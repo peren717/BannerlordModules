@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.SandBox.GameComponents;
+using TaleWorlds.Core;
+using TaleWorlds.Library;
 
 namespace PolicyOverhaul
 {
@@ -23,28 +25,47 @@ namespace PolicyOverhaul
                 }
                 if (clan.Kingdom != null && !clan.IsUnderMercenaryService)
                 {
-                    if (clan.Kingdom.ActivePolicies.Contains(DefaultPolicies.CouncilOfTheCommons))
-                    {
-                        int num2 = -(clan.Settlements.Sum((Settlement t) => t.Notables.Count));
-                        explainedNumber.Add((clan.Settlements.Sum((Settlement t) => t.Notables.Count)) + (float)num2 * 0.2f, DefaultPolicies.CouncilOfTheCommons.Name);
-                    }
 
-                    if (clan==clan.Kingdom.RulingClan)
+                    if (clan == clan.Kingdom.RulingClan)
                     {
-                        if(clan.Kingdom.ActivePolicies.Contains(NewPolicies.ConstitutionaMonarchy))
+                        if (clan.Kingdom.ActivePolicies.Contains(NewPolicies.ConstitutionaMonarchy))
                         {
-                            explainedNumber.Add(-(explainedNumber.ResultNumber+ clan.Influence), NewPolicies.ConstitutionaMonarchy.Name);
+                            explainedNumber.Add(-(explainedNumber.ResultNumber + clan.Influence), NewPolicies.ConstitutionaMonarchy.Name);
                         }
                     }
-                    return explainedNumber.ResultNumber;
+
+                    if (clan.Kingdom.ActivePolicies.Contains(NewPolicies.Abdicate))
+                    {
+                        if ((clan != clan.Kingdom.RulingClan) && (clan == GetMostInfluencialClan(clan.Kingdom)))
+                        {
+                            clan.Kingdom.RulingClan = clan;
+                            InformationManager.DisplayMessage(new InformationMessage(clan.Leader.ToString() + "通过禅让成为了"+clan.Kingdom.ToString()+"的新领袖", Colors.Green));
+                        }
+                    }
                 }
             }
             catch (Exception e)
             {
-                throw e;
+                MessageBox.Show("NewClanFinaceModel Error: " + e.Message);
             }
 
             return explainedNumber.ResultNumber;
+        }
+
+        static Clan GetMostInfluencialClan(Kingdom kingdom)
+        {
+            float zero = 0;
+            float max = -1 / zero;
+            Clan result = null;
+            foreach (Clan clan in kingdom.Clans)
+            {
+                if (clan.Influence > max)
+                {
+                    result = clan;
+                    max = clan.Influence;
+                }
+            }
+            return result;
         }
 
     }

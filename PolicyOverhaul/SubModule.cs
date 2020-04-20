@@ -37,6 +37,8 @@ namespace PolicyOverhaul
             if (game.GameType is Campaign)
             {
                 gameStarterObject.AddModel(new NewClanPoliticsModel());
+                gameStarterObject.AddModel(new NewClanFinanceModel());
+
             }
         }
     }

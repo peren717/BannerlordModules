@@ -249,7 +249,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="InitializeAllPatch.cs" />
+    <Compile Include="KindomManagerHourlyTickPatch.cs" />
     <Compile Include="NewClanFinanceModel.cs" />
+    <Compile Include="NewDailyTroopXPBonusModel.cs" />
     <Compile Include="NewPolicies.cs" />
     <Compile Include="NewClanPoliticsModel.cs" />
     <Compile Include="RegisterAllPatch.cs" />

@@ -10,6 +10,8 @@ namespace PolicyOverhaul
     class NewPolicies
     {
         public static PolicyObject ConstitutionaMonarchy { get; set; }
-        //public static PolicyObject ProfessionalArmy { get; set; }
+        public static PolicyObject ProfessionalArmy { get; set; }
+        public static PolicyObject Abdicate { get; set; }
+        //public static PolicyObject SplitSystem { get; set; }
     }
 }

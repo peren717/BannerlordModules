@@ -21,7 +21,9 @@ namespace PolicyOverhaul
         static bool PreFix(DefaultPolicies __instance, Game game)
         {
             NewPolicies.ConstitutionaMonarchy = game.ObjectManager.RegisterPresumedObject<PolicyObject>(new PolicyObject("policy_constitutionaMonarchy"));
-            //NewPolicies.ProfessionalArmy = game.ObjectManager.RegisterPresumedObject<PolicyObject>(new PolicyObject("policy_professionalArmy"));
+            NewPolicies.ProfessionalArmy = game.ObjectManager.RegisterPresumedObject<PolicyObject>(new PolicyObject("policy_professionalArmy"));
+            NewPolicies.Abdicate = game.ObjectManager.RegisterPresumedObject<PolicyObject>(new PolicyObject("policy_Abdicate"));
+
 
 
             return true;
