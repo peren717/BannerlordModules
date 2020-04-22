@@ -23,7 +23,6 @@ namespace PolicyOverhaul
             NewPolicies.ConstitutionaMonarchy = game.ObjectManager.RegisterPresumedObject<PolicyObject>(new PolicyObject("policy_constitutionaMonarchy"));
             NewPolicies.ProfessionalArmy = game.ObjectManager.RegisterPresumedObject<PolicyObject>(new PolicyObject("policy_professionalArmy"));
             NewPolicies.Abdicate = game.ObjectManager.RegisterPresumedObject<PolicyObject>(new PolicyObject("policy_Abdicate"));
-            NewPolicies.Feudalism = game.ObjectManager.RegisterPresumedObject<PolicyObject>(new PolicyObject("Feudailism"));
 
 
 

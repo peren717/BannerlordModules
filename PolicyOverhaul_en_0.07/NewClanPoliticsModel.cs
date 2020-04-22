@@ -46,11 +46,6 @@ namespace PolicyOverhaul
                             }
                         }
                     }
-
-                    if (clan.Kingdom.ActivePolicies.Contains(NewPolicies.Feudalism))
-                    {
-                        explainedNumber.Add((float) 3-clan.Tier, NewPolicies.Feudalism.Name);
-                    }
                 }
             }
             catch (Exception e)
