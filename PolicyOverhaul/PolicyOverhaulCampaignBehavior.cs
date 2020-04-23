@@ -18,15 +18,50 @@ namespace PolicyOverhaul
         private Dictionary<string, int> timerList = new Dictionary<string, int>();
         int clock = 0;
         int electionCycle = PolicyOverhaulSettings.Instance.ElectionCycle;
-        float wantToSupportProbability = 0.2f;
-        float supportProbability = 0.2f;
+        float wantToActProbability = 0.05f;
+        float actProbability = 0.2f;
 
         public override void RegisterEvents()
         {
             CampaignEvents.DailyTickClanEvent.AddNonSerializedListener(this, new Action<Clan>(this.NewPolicyDailyTickClan));
             CampaignEvents.DailyTickEvent.AddNonSerializedListener(this, new Action(this.OnDailyTick));
             CampaignEvents.OnSessionLaunchedEvent.AddNonSerializedListener(this, new Action<CampaignGameStarter>(this.OnSessionLaunched));
+            CampaignEvents.OnNewGameCreatedEvent.AddNonSerializedListener(this, new Action<CampaignGameStarter>(this.OnAfterNewGameCreated));
 
+
+        }
+
+        private void OnAfterNewGameCreated(CampaignGameStarter campaignGameStarter)
+        {
+            foreach (Kingdom kingdom in Kingdom.All)
+            {
+                if (kingdom.Name.ToString() == "阿塞莱")
+                {
+                    kingdom.ActivePolicies.Add(NewPolicies.Polygamy);
+                }
+                else if (kingdom.Name.ToString() == "库赛特")
+                {
+                    kingdom.ActivePolicies.Add(NewPolicies.Slavery);
+                }
+                else if (kingdom.Name.ToString() == "北部帝国")
+                {
+                    kingdom.ActivePolicies.Add(NewPolicies.Republic);
+                }
+                else if (kingdom.Name.ToString() == "南部帝国")
+                {
+                    kingdom.ActivePolicies.Add(NewPolicies.Feudalism);
+                }
+                else if (kingdom.Name.ToString() == "瓦兰迪亚")
+                {
+                    kingdom.ActivePolicies.Add(NewPolicies.Vassalism);
+                }
+                else if (kingdom.Name.ToString() == "斯特吉亚")
+                {
+                    kingdom.ActivePolicies.Add(NewPolicies.WarFury);
+                }
+
+
+            }
         }
 
         private void OnSessionLaunched(CampaignGameStarter obj)
@@ -63,8 +98,9 @@ namespace PolicyOverhaul
                     if (!isPlayer)
                     {
                         SupportFriend(clan);
+                        HarmEnemy(clan);
                     }
-                    if (clan.Kingdom.ActivePolicies.Contains(NewPolicies.Abdicate))
+                    if (clan.Kingdom.ActivePolicies.Contains(NewPolicies.Republic))
                     {
                         if (timerList.TryGetValue(clan.Kingdom.Name.ToString(), out int t))
                         {
@@ -79,6 +115,25 @@ namespace PolicyOverhaul
                             timerList.Add(clan.Kingdom.Name.ToString(), clock);
                         }
                     }
+                    if (clan.Kingdom.ActivePolicies.Contains(NewPolicies.Vassalism))
+                    {
+
+                        foreach (Settlement settlement in clan.Kingdom.Settlements)
+                        {
+                            foreach (Hero otherHero in settlement.Notables)
+                            {
+                                clan.Leader.SetPersonalRelation(otherHero, 0);
+                            }
+                        }
+                        foreach (Settlement settlement in clan.Settlements)
+                        {
+                            foreach (Hero otherHero in settlement.Notables)
+                            {
+                                clan.Leader.SetPersonalRelation(otherHero, 100);
+                            }
+                        }
+                    }
+
 
 
                 }
@@ -89,17 +144,43 @@ namespace PolicyOverhaul
                 InformationManager.DisplayMessage(new InformationMessage("Error in NewPolicyDailyTickClan", Colors.Red));
             }
         }
+        private void HarmEnemy(Clan clan)
+        {
+            Kingdom kingdom = clan.Kingdom;
+            if (MBRandom.RandomFloatRanged(0f, 1f) < wantToActProbability)
+            {
+                foreach (Clan otherClan in Clan.All)
+                {
+
+                    if (clan.Leader.GetRelation(otherClan.Leader) < -50 && MBRandom.RandomFloatRanged(0f, 1f) < actProbability)
+                    {
+                        otherClan.Influence -= 1;
+                        if (otherClan.Leader.IsHumanPlayerCharacter)
+                        {
+                            InformationManager.DisplayMessage(new InformationMessage(clan.Leader.ToString() + "在其他领主面前羞辱了" + otherClan.Leader.ToString(), Colors.Red));
+                            InformationManager.AddQuickInformation(new TextObject(clan.Leader.ToString() + "在其他领主面前羞辱了你。", null));
+                        }
+                        else
+                        {
+                            InformationManager.DisplayMessage(new InformationMessage(kingdom.Name.ToString() + "的" + clan.Leader.ToString() + "公开羞辱了" + otherClan.Name.ToString()));
+                        }
+                        return;
+                    }
+
+                }
+            }
+        }
 
         private void SupportFriend(Clan clan)
         {
             Kingdom kingdom = clan.Kingdom;
-            if (MBRandom.RandomFloatRanged(0f, 1f) < wantToSupportProbability)
+            if (MBRandom.RandomFloatRanged(0f, 1f) < wantToActProbability)
             {
                 foreach (Clan otherClan in kingdom.Clans)
                 {
                     if (clan.InfluenceChange > 0 && clan.Influence > 100)
                     {
-                        if (clan.Leader.GetRelation(otherClan.Leader) > 50 && MBRandom.RandomFloatRanged(0f, 1f) < supportProbability)
+                        if (clan.Leader.GetRelation(otherClan.Leader) > 50 && MBRandom.RandomFloatRanged(0f, 1f) < actProbability)
                         {
                             clan.Influence -= 50;
                             otherClan.Influence += 10;

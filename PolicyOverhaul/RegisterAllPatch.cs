@@ -22,8 +22,19 @@ namespace PolicyOverhaul
         {
             NewPolicies.ConstitutionaMonarchy = game.ObjectManager.RegisterPresumedObject<PolicyObject>(new PolicyObject("policy_constitutionaMonarchy"));
             NewPolicies.ProfessionalArmy = game.ObjectManager.RegisterPresumedObject<PolicyObject>(new PolicyObject("policy_professionalArmy"));
-            NewPolicies.Abdicate = game.ObjectManager.RegisterPresumedObject<PolicyObject>(new PolicyObject("policy_Abdicate"));
+            NewPolicies.Republic = game.ObjectManager.RegisterPresumedObject<PolicyObject>(new PolicyObject("policy_Abdicate"));
             NewPolicies.Feudalism = game.ObjectManager.RegisterPresumedObject<PolicyObject>(new PolicyObject("Feudailism"));
+            NewPolicies.Vassalism = game.ObjectManager.RegisterPresumedObject<PolicyObject>(new PolicyObject("vassalism"));
+            NewPolicies.Polygamy = game.ObjectManager.RegisterPresumedObject<PolicyObject>(new PolicyObject("polygamy"));
+            NewPolicies.Slavery = game.ObjectManager.RegisterPresumedObject<PolicyObject>(new PolicyObject("slavery"));
+            NewPolicies.WarFury = game.ObjectManager.RegisterPresumedObject<PolicyObject>(new PolicyObject("WarFury"));
+            NewPolicies.CouncilOfTheCommens = game.ObjectManager.RegisterPresumedObject<PolicyObject>(new PolicyObject("CouncilOfTheCommens"));
+
+
+
+
+
+
 
 
 

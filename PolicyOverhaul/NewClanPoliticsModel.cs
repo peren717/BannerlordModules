@@ -33,11 +33,14 @@ namespace PolicyOverhaul
                             explainedNumber.Add(-(explainedNumber.ResultNumber + clan.Influence), NewPolicies.ConstitutionaMonarchy.Name);
                         }
                     }
-
                     if (clan.Kingdom.ActivePolicies.Contains(DefaultPolicies.CouncilOfTheCommons))
                     {
+                        clan.Kingdom.RemovePolicy(DefaultPolicies.CouncilOfTheCommons);
+                    }
+                    if (clan.Kingdom.ActivePolicies.Contains(NewPolicies.CouncilOfTheCommens))
+                    {
                         int num2 = -(clan.Settlements.Sum((Settlement t) => t.Notables.Count));
-                        explainedNumber.Add((clan.Settlements.Sum((Settlement t) => t.Notables.Count)) + (float)num2 * 0.2f, DefaultPolicies.CouncilOfTheCommons.Name);
+                        explainedNumber.Add((float)num2 * 0.2f, DefaultPolicies.CouncilOfTheCommons.Name);
                         foreach (Settlement settlement in clan.Settlements)
                         {
                             foreach (Hero hero in settlement.Notables)
@@ -49,7 +52,7 @@ namespace PolicyOverhaul
 
                     if (clan.Kingdom.ActivePolicies.Contains(NewPolicies.Feudalism))
                     {
-                        explainedNumber.Add((float) 3-clan.Tier, NewPolicies.Feudalism.Name);
+                        explainedNumber.Add((float)clan.Tier - 3, NewPolicies.Feudalism.Name);
                     }
                 }
             }

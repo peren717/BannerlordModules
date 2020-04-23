@@ -251,10 +251,16 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CalculateProsperityChangePatch.cs" />
+    <Compile Include="CalculatePolicyEffectOnSecurityPatch.cs" />
+    <Compile Include="DefaultPartySizeLimitModelPatch.cs" />
+    <Compile Include="DistributeLootAmongWinnersPatch.cs" />
+    <Compile Include="GainRenownActionPatch.cs" />
     <Compile Include="InitializeAllPatch.cs" />
     <Compile Include="NewClanFinanceModel.cs" />
     <Compile Include="NewDailyTroopXPBonusModel.cs" />
     <Compile Include="NewKingSelectionKingdomDecision.cs" />
+    <Compile Include="NewMarriageModel.cs" />
     <Compile Include="NewPolicies.cs" />
     <Compile Include="NewClanPoliticsModel.cs" />
     <Compile Include="PolicyOverhaulCampaignBehavior.cs" />

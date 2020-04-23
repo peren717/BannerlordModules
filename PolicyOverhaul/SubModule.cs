@@ -40,6 +40,7 @@ namespace PolicyOverhaul
                 campaignGameStarter.AddBehavior(new PolicyOverhaulCampaignBehavior());
                 gameStarterObject.AddModel(new NewClanPoliticsModel());
                 gameStarterObject.AddModel(new NewClanFinanceModel());
+                gameStarterObject.AddModel(new NewMarriageModel());
                 
 
             }
