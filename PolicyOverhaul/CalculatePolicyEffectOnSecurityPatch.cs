@@ -22,7 +22,7 @@ namespace PolicyOverhaul
                 {
                     explainedNumber.Add(-1f, NewPolicies.Polygamy.Name);
                 }
-                if (kingdom.ActivePolicies.Contains(NewPolicies.Polygamy))
+                if (kingdom.ActivePolicies.Contains(NewPolicies.WarFury))
                 {
                     explainedNumber.Add(-5f, NewPolicies.WarFury.Name);
                 }

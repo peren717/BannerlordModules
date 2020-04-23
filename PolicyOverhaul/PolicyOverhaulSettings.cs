@@ -17,5 +17,11 @@ namespace PolicyOverhaul
         [SettingProperty("选举间隔", 5,500 , false, "选举间隔")]
         [SettingPropertyGroup("通用")]
         public int ElectionCycle { get; set; } = 30;
+
+        [SettingProperty("领袖可否连任", 5, 500, false, "领袖可否连任")]
+        [SettingPropertyGroup("通用")]
+        public bool InfiniteTerm { get; set; } = false;
     }
+
+
 }

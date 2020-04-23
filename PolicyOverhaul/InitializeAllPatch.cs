@@ -43,6 +43,12 @@ namespace PolicyOverhaul
                 new TextObject("每有一点影响力，就多一点部队上限(最多500)。 \n所有定居点繁荣度减5。\n所有定居点安全减5。", null), 0.5f, -0.5f, -0.1f));
             __instance.Policies.Add(NewPolicies.CouncilOfTheCommens.Initialize(new TextObject("民众大会制", null), new TextObject("权力下放，允许领地内的要人参与政治。", null),
                 new TextObject("民众大会制。", null), new TextObject("每个要人每日消耗其领主0.2影响力 \n每个要人每日声望增加1", null), 0.0f, -0.1f, 0.4f));
+            __instance.Policies.Add(NewPolicies.Centralization.Initialize(new TextObject("中央集权", null), new TextObject("中央集权是一种国家政权的制度，以国家职权统一于中央政府，削弱地方政府力量为标志。", null),
+                new TextObject("中央集权制。", null),
+                new TextObject("国家所有城镇收归于统治者家族。 \n统治者家族要向所有封臣每日发放俸禄。", null), 0.9f, -0.9f, -0.9f));
+
+
+
             return true;
         }
 

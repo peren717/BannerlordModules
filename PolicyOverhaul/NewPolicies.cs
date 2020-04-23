@@ -18,6 +18,7 @@ namespace PolicyOverhaul
         public static PolicyObject Slavery { get; set; }
         public static PolicyObject WarFury { get; set; }
         public static PolicyObject CouncilOfTheCommens { get; set; }
+        public static PolicyObject Centralization { get; set; }
 
 
 

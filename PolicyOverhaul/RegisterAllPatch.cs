@@ -29,6 +29,8 @@ namespace PolicyOverhaul
             NewPolicies.Slavery = game.ObjectManager.RegisterPresumedObject<PolicyObject>(new PolicyObject("slavery"));
             NewPolicies.WarFury = game.ObjectManager.RegisterPresumedObject<PolicyObject>(new PolicyObject("WarFury"));
             NewPolicies.CouncilOfTheCommens = game.ObjectManager.RegisterPresumedObject<PolicyObject>(new PolicyObject("CouncilOfTheCommens"));
+            NewPolicies.Centralization = game.ObjectManager.RegisterPresumedObject<PolicyObject>(new PolicyObject("Centralization"));
+
 
 
 

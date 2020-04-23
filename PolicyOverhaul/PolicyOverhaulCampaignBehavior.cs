@@ -10,6 +10,7 @@ using TaleWorlds.Library;
 using TaleWorlds.Engine;
 using System.Windows.Forms;
 using TaleWorlds.CampaignSystem.Election;
+using TaleWorlds.CampaignSystem.Actions;
 
 namespace PolicyOverhaul
 {
@@ -27,9 +28,10 @@ namespace PolicyOverhaul
             CampaignEvents.DailyTickEvent.AddNonSerializedListener(this, new Action(this.OnDailyTick));
             CampaignEvents.OnSessionLaunchedEvent.AddNonSerializedListener(this, new Action<CampaignGameStarter>(this.OnSessionLaunched));
             CampaignEvents.OnNewGameCreatedEvent.AddNonSerializedListener(this, new Action<CampaignGameStarter>(this.OnAfterNewGameCreated));
-
+            CampaignEvents.DailyTickSettlementEvent.AddNonSerializedListener(this, new Action<Settlement>(this.DailyTickSettlementEvent));
 
         }
+
 
         private void OnAfterNewGameCreated(CampaignGameStarter campaignGameStarter)
         {
@@ -79,6 +81,37 @@ namespace PolicyOverhaul
         {
             dataStore.SyncData<int>("clock", ref this.clock);
             dataStore.SyncData<Dictionary<string, int>>("timerList", ref this.timerList);
+        }
+
+        private void DailyTickSettlementEvent(Settlement settlement)
+        {
+            if(settlement.OwnerClan != null && settlement.OwnerClan.Kingdom != null)
+            {
+                Kingdom kingdom = settlement.OwnerClan.Kingdom;
+                if(kingdom.ActivePolicies.Contains(NewPolicies.Centralization))
+                {
+                    if(settlement.OwnerClan!=kingdom.RulingClan && settlement.IsTown)
+                    {
+                        if(settlement.OwnerClan==Clan.PlayerClan)
+                        {
+                            InformationManager.DisplayMessage(new InformationMessage("你的"+ settlement.Name + "已被收归" + kingdom.Name +"所有", Colors.Red));
+                            InformationManager.AddQuickInformation(new TextObject("你的" + settlement.Name + "已被收归" + kingdom.Name + "所有。作为补偿你获得"+ settlement.Prosperity+"金币和50点声望。", null));
+                            settlement.OwnerClan.AddRenown(50);
+                            GiveGoldAction.ApplyBetweenCharacters(kingdom.RulingClan.Leader, Hero.MainHero, (int) settlement.Prosperity, false);
+
+                        }
+                        else
+                        {
+                            InformationManager.DisplayMessage(new InformationMessage(settlement.Name + "已被收归" + kingdom.Name + "所有", Colors.Gray));
+                        }
+                        ChangeOwnerOfSettlementAction.ApplyByDefault(kingdom.RulingClan.Leader, settlement);
+
+
+                    }
+                }
+
+            }
+
         }
 
         private void OnDailyTick()
@@ -133,6 +166,23 @@ namespace PolicyOverhaul
                             }
                         }
                     }
+                    if(clan.Kingdom.ActivePolicies.Contains(NewPolicies.Centralization) && clan != clan.Kingdom.RulingClan && clan != Clan.PlayerClan )
+                    {
+                        if (clan.Kingdom.RulingClan != Clan.PlayerClan)
+                        {
+                            GiveGoldAction.ApplyBetweenCharacters(clan.Kingdom.RulingClan.Leader, clan.Leader, clan.Tier * 1000);
+                            if (clan.Kingdom.RulingClan.Leader.Gold < 1000)
+                            {
+                                GiveGoldAction.ApplyBetweenCharacters(null, clan.Kingdom.RulingClan.Leader, 1000);
+                            }
+                        }
+                        else
+                        {
+                            GiveGoldAction.ApplyBetweenCharacters(null, clan.Leader, (int) (clan.Tier*500+clan.Influence));
+
+                        }
+
+                    }
 
 
 
@@ -154,15 +204,15 @@ namespace PolicyOverhaul
 
                     if (clan.Leader.GetRelation(otherClan.Leader) < -50 && MBRandom.RandomFloatRanged(0f, 1f) < actProbability)
                     {
-                        otherClan.Influence -= 1;
+                        otherClan.Influence -= 5;
                         if (otherClan.Leader.IsHumanPlayerCharacter)
                         {
                             InformationManager.DisplayMessage(new InformationMessage(clan.Leader.ToString() + "在其他领主面前羞辱了" + otherClan.Leader.ToString(), Colors.Red));
-                            InformationManager.AddQuickInformation(new TextObject(clan.Leader.ToString() + "在其他领主面前羞辱了你。", null));
+                            InformationManager.AddQuickInformation(new TextObject(clan.Leader.ToString() + "在其他领主面前羞辱了你。你的影响力减5。", null));
                         }
                         else
                         {
-                            InformationManager.DisplayMessage(new InformationMessage(kingdom.Name.ToString() + "的" + clan.Leader.ToString() + "公开羞辱了" + otherClan.Name.ToString()));
+                            InformationManager.DisplayMessage(new InformationMessage(kingdom.Name.ToString() + "的" + clan.Leader.ToString() + "公开羞辱了" + otherClan.Name.ToString(), Colors.Gray));
                         }
                         return;
                     }
@@ -187,7 +237,7 @@ namespace PolicyOverhaul
                             if (otherClan.Leader.IsHumanPlayerCharacter)
                             {
                                 InformationManager.DisplayMessage(new InformationMessage(clan.Leader.ToString() + "公开表示对" + otherClan.Leader.ToString() + "的政治支持。", Colors.Green));
-                                InformationManager.AddQuickInformation(new TextObject(clan.Leader.ToString() + "公开表示对你的政治支持。", null));
+                                InformationManager.AddQuickInformation(new TextObject(clan.Leader.ToString() + "公开表示对你的政治支持。你的影响力加10。", null));
                             }
                             else
                             {
