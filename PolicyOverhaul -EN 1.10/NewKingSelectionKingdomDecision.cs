@@ -232,11 +232,11 @@ namespace TaleWorlds.CampaignSystem.Election
                     {
                         if (settlement.OwnerClan == Clan.PlayerClan)
                         {
-                            InformationManager.DisplayMessage(new InformationMessage("你的" + settlement.Name + "已被收归" + kingdom.Name + "所有", Colors.Red));
+                            InformationManager.DisplayMessage(new InformationMessage("Your town" + settlement.Name + "was confiscated by" + kingdom.Name, Colors.Red));
                         }
                         else
                         {
-                            InformationManager.DisplayMessage(new InformationMessage(settlement.Name + "已被收归" + kingdom.Name + "所有", Colors.Gray));
+                            InformationManager.DisplayMessage(new InformationMessage(settlement.Name + "was confiscated by" + kingdom.Name, Colors.Gray));
                         }
                         ChangeOwnerOfSettlementAction.ApplyByDefault(kingdom.RulingClan.Leader, settlement);
                     }

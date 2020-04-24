@@ -21,6 +21,14 @@ namespace PolicyOverhaul
         [SettingProperty("领袖可否连任", 5, 500, false, "领袖可否连任")]
         [SettingPropertyGroup("通用")]
         public bool InfiniteTerm { get; set; } = false;
+
+        [SettingProperty("互动频率", 0f, 1f, false, "领主之间互动频率，0为无互动，1为必定互动（会导致刷屏）")]
+        [SettingPropertyGroup("通用")]
+        public float ActProbablity { get; set; } = 0.2f;
+
+        [SettingProperty("新游戏国家自带政策", 5, 500, false, "开启后，开始新游戏时，每个国家将会根据背景自带国策")]
+        [SettingPropertyGroup("通用")]
+        public bool EnablePreAssignedPolicies { get; set; } = true;
     }
 
 

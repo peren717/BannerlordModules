@@ -42,41 +42,41 @@ namespace PolicyOverhaul
             {
                 foreach (Kingdom kingdom in Kingdom.All)
                 {
-                    if (kingdom.Name.ToString() == "阿塞莱")
+                    if (kingdom.Name.ToString() == "Aserai")
                     {
                         kingdom.ActivePolicies.Add(NewPolicies.Polygamy);
                     }
-                    else if (kingdom.Name.ToString() == "库赛特")
+                    else if (kingdom.Name.ToString() == "Khuzait")
                     {
                         kingdom.ActivePolicies.Add(NewPolicies.NormadicHorde);
                         kingdom.ActivePolicies.Add(NewPolicies.Slavery);
                     }
-                    else if (kingdom.Name.ToString() == "北部帝国")
+                    else if (kingdom.Name.ToString() == "Northern Empire")
                     {
                         kingdom.ActivePolicies.Add(NewPolicies.Republic);
                     }
-                    else if (kingdom.Name.ToString() == "南部帝国")
+                    else if (kingdom.Name.ToString() == "Southern Empire")
                     {
                         kingdom.ActivePolicies.Add(NewPolicies.Republic);
                         kingdom.ActivePolicies.Add(NewPolicies.Feudalism);
                         kingdom.ActivePolicies.Add(DefaultPolicies.FeudalInheritance);
 
                     }
-                    else if (kingdom.Name.ToString() == "西部帝国")
+                    else if (kingdom.Name.ToString() == "Western Empire")
                     {
                         kingdom.ActivePolicies.Add(NewPolicies.Republic);
                         kingdom.ActivePolicies.Add(NewPolicies.Tyrant);
 
                     }
-                    else if (kingdom.Name.ToString() == "瓦兰迪亚")
+                    else if (kingdom.Name.ToString() == "Vlandia")
                     {
                         kingdom.ActivePolicies.Add(NewPolicies.Vassalism);
                     }
-                    else if (kingdom.Name.ToString() == "斯特吉亚")
+                    else if (kingdom.Name.ToString() == "Sturgia")
                     {
                         kingdom.ActivePolicies.Add(NewPolicies.WarFury);
                     }
-                    else if (kingdom.Name.ToString() == "巴旦尼亚")
+                    else if (kingdom.Name.ToString() == "Battania")
                     {
                     }
 
@@ -120,15 +120,15 @@ namespace PolicyOverhaul
                     {
                         if (settlement.OwnerClan == Clan.PlayerClan)
                         {
-                            InformationManager.DisplayMessage(new InformationMessage("你的" + settlement.Name + "已被收归" + kingdom.Name + "所有", Colors.Red));
-                            InformationManager.AddQuickInformation(new TextObject("你的" + settlement.Name + "已被收归" + kingdom.Name + "所有。作为补偿你获得" + settlement.Prosperity + "金币和50点声望。", null));
+                            InformationManager.DisplayMessage(new InformationMessage("Your town" + settlement.Name + "was confiscated by" + kingdom.Name, Colors.Red));
+                            InformationManager.AddQuickInformation(new TextObject("Your town" + settlement.Name + "was confiscated by" + kingdom.Name + "You get" + settlement.Prosperity + "and 50 renown as compensation.", null));
                             settlement.OwnerClan.AddRenown(50);
                             GiveGoldAction.ApplyBetweenCharacters(kingdom.RulingClan.Leader, Hero.MainHero, (int)settlement.Prosperity, false);
 
                         }
                         else
                         {
-                            InformationManager.DisplayMessage(new InformationMessage(settlement.Name + "已被收归" + kingdom.Name + "所有", Colors.Gray));
+                            InformationManager.DisplayMessage(new InformationMessage(settlement.Name + "was confiscated by" + kingdom.Name, Colors.Gray));
                         }
                         ChangeOwnerOfSettlementAction.ApplyByDefault(kingdom.RulingClan.Leader, settlement);
 
@@ -249,25 +249,25 @@ namespace PolicyOverhaul
                         {
                             if (otherClan.Leader.IsHumanPlayerCharacter)
                             {
-                                InformationManager.DisplayMessage(new InformationMessage(otherClan.Leader.ToString() + "被不明人士袭击。经过拷问，袭击者受雇于" + kingdom.Name.ToString() + "的" + clan.Name.ToString(), Colors.Red));
-                                InformationManager.AddQuickInformation(new TextObject(clan.Leader.ToString() + "的人趁你身边护卫不在时袭击了你。经过搏斗你索性生还。", null));
+                                InformationManager.DisplayMessage(new InformationMessage(otherClan.Leader.ToString() + "is attacked by an assasin sent by" + clan.Name.ToString() + "from" + kingdom.Name.ToString(), Colors.Red));
+                                InformationManager.AddQuickInformation(new TextObject("You were attacked by an assasin sent by "+clan.Leader.ToString() + ". Luckly you survived", null));
                             }
                             else
                             {
-                                InformationManager.DisplayMessage(new InformationMessage(otherClan.Leader.ToString() + "被不明人士袭击。经过拷问，袭击者受雇于" + kingdom.Name.ToString() + "的" + clan.Name.ToString()));
+                                InformationManager.DisplayMessage(new InformationMessage(otherClan.Leader.ToString() + "was attacked by an assasin sent by" + clan.Leader.ToString()));
                             }
                         }
                         else
                         {
                             if (otherClan.Leader.IsHumanPlayerCharacter)
                             {
-                                InformationManager.DisplayMessage(new InformationMessage(otherClan.Leader.ToString() + "被不明人士袭击。经过拷问，袭击者受雇于" + kingdom.Name.ToString() + "的" + clan.Name.ToString(), Colors.Red));
-                                InformationManager.AddQuickInformation(new TextObject(clan.Leader.ToString() + "的人趁你身边护卫不在时袭击了你。经过搏斗你身受重伤。", null));
+                                InformationManager.DisplayMessage(new InformationMessage(otherClan.Leader.ToString() + "was attacked by an assasin sent by" + clan.Leader.ToString(), Colors.Red));
+                                InformationManager.AddQuickInformation(new TextObject("You were attacked by an assasin sent by"+ clan.Leader.ToString() +" and were gravely wounded.", null));
                                 otherClan.Leader.HitPoints = 1;
                             }
                             else
                             {
-                                InformationManager.DisplayMessage(new InformationMessage(otherClan.Leader.ToString() + "被不明人士袭击。经过拷问，袭击者受雇于" + kingdom.Name.ToString() + "的" + clan.Name.ToString()));
+                                InformationManager.DisplayMessage(new InformationMessage(otherClan.Leader.ToString() + "was attacked by an assasin sent by" + clan.Leader.ToString()));
                             }
                         }
                         return;
@@ -279,12 +279,12 @@ namespace PolicyOverhaul
                         otherClan.Influence -= 5;
                         if (otherClan.Leader.IsHumanPlayerCharacter)
                         {
-                            InformationManager.DisplayMessage(new InformationMessage(clan.Leader.ToString() + "在其他领主面前羞辱了" + otherClan.Leader.ToString(), Colors.Red));
-                            InformationManager.AddQuickInformation(new TextObject(clan.Leader.ToString() + "在其他领主面前羞辱了你。你的影响力减5。", null));
+                            InformationManager.DisplayMessage(new InformationMessage(clan.Leader.ToString() + "spreads rumors about" + otherClan.Leader.ToString() +".", Colors.Red));
+                            InformationManager.AddQuickInformation(new TextObject(clan.Leader.ToString() + "spreads rumors about you, so you lose 5 infulence.", null));
                         }
                         else
                         {
-                            InformationManager.DisplayMessage(new InformationMessage(kingdom.Name.ToString() + "的" + clan.Leader.ToString() + "公开羞辱了" + otherClan.Name.ToString(), Colors.Gray));
+                            InformationManager.DisplayMessage(new InformationMessage(clan.Leader.ToString() + "from" + kingdom.Name.ToString() + "spreads rumors about" + otherClan.Name.ToString()+".", Colors.Gray));
                         }
 
                         return;
@@ -319,12 +319,12 @@ namespace PolicyOverhaul
                             otherClan.Influence += 10;
                             if (otherClan.Leader.IsHumanPlayerCharacter)
                             {
-                                InformationManager.DisplayMessage(new InformationMessage(clan.Leader.ToString() + "公开表示对" + otherClan.Leader.ToString() + "的政治支持。", Colors.Green));
-                                InformationManager.AddQuickInformation(new TextObject(clan.Leader.ToString() + "公开表示对你的政治支持。你的影响力加10。", null));
+                                InformationManager.DisplayMessage(new InformationMessage(clan.Leader.ToString() + "offers" + otherClan.Leader.ToString() + "political support.", Colors.Green));
+                                InformationManager.AddQuickInformation(new TextObject(clan.Leader.ToString() + "offers you political supports.You get 5 influence.", null));
                             }
                             else
                             {
-                                InformationManager.DisplayMessage(new InformationMessage(kingdom.Name.ToString() + "的" + clan.Leader.ToString() + "对" + otherClan.Name.ToString() + "表示政治上支持。", Colors.Gray));
+                                InformationManager.DisplayMessage(new InformationMessage(clan.Leader.ToString() + "offers" + otherClan.Name.ToString() + "political support.", Colors.Gray));
                             }
                             return;
                         }
@@ -368,12 +368,12 @@ namespace PolicyOverhaul
             {
                 if (kingdom.RulingClan.Leader.IsHumanPlayerCharacter)
                 {
-                    InformationManager.DisplayMessage(new InformationMessage(kingdom.Leader.Name+ "借用军事力量夺取了" + kingdom.Name +"的政权，成为新任僭主。", Colors.Green));
-                    InformationManager.AddQuickInformation(new TextObject("你借用军事力量夺取了"+ kingdom.Name +"的政权，成为新任僭主。", null));
+                    InformationManager.DisplayMessage(new InformationMessage(kingdom.Leader.Name+ "has seize the throne of" + kingdom.Name + "by military strength.", Colors.Green));
+                    InformationManager.AddQuickInformation(new TextObject("You have seize the throne of"+ kingdom.Name + "by military strength. Congratulations, my lord!", null));
                 }
                 else
                 {
-                    InformationManager.DisplayMessage(new InformationMessage(kingdom.RulingClan.Leader.ToString() + "借用军事力量夺取了" + kingdom.Name + "的政权，成为新任僭主。"));
+                    InformationManager.DisplayMessage(new InformationMessage(kingdom.RulingClan.Leader.ToString() + "has seize the throne of" + kingdom.Name + "by military strength."));
                 }
             }
 

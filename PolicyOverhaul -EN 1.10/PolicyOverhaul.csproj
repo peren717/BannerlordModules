@@ -37,6 +37,9 @@
     <Reference Include="0Harmony">
       <HintPath>D:\SteamLibrary\steamapps\common\Mount &amp; Blade II Bannerlord\Modules\0Harmony.dll</HintPath>
     </Reference>
+    <Reference Include="MBOptionScreen">
+      <HintPath>D:\SteamLibrary\steamapps\common\Mount &amp; Blade II Bannerlord\Modules\Bannerlord.MBOptionScreen\bin\Win64_Shipping_Client\MBOptionScreen.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Windows.Forms" />
@@ -196,6 +199,9 @@
       <HintPath>$(GameFolder)\bin\Win64_Shipping_Client\TaleWorlds.Network.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="TaleWorlds.ObjectSystem">
+      <HintPath>D:\SteamLibrary\steamapps\common\Mount &amp; Blade II Bannerlord\bin\Win64_Shipping_Client\TaleWorlds.ObjectSystem.dll</HintPath>
+    </Reference>
     <Reference Include="TaleWorlds.PlatformService, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>$(GameFolder)\bin\Win64_Shipping_Client\TaleWorlds.PlatformService.dll</HintPath>
@@ -248,13 +254,22 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CalculateProsperityChangePatch.cs" />
+    <Compile Include="CalculatePolicyEffectOnSecurityPatch.cs" />
+    <Compile Include="CustomSaveDefiner.cs" />
+    <Compile Include="DefaultPartySizeLimitModelPatch.cs" />
+    <Compile Include="GainRenownActionPatch.cs" />
     <Compile Include="InitializeAllPatch.cs" />
     <Compile Include="NewClanFinanceModel.cs" />
     <Compile Include="NewDailyTroopXPBonusModel.cs" />
     <Compile Include="NewKingSelectionKingdomDecision.cs" />
+    <Compile Include="NewMarriageModel.cs" />
     <Compile Include="NewPolicies.cs" />
     <Compile Include="NewClanPoliticsModel.cs" />
+    <Compile Include="PartySpeedCalculatingModelPatch.cs" />
+    <Compile Include="FoodConsumptionBehaviorPatch.cs" />
     <Compile Include="PolicyOverhaulCampaignBehavior.cs" />
+    <Compile Include="PolicyOverhaulSettings.cs" />
     <Compile Include="RegisterAllPatch.cs" />
     <Compile Include="SubModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

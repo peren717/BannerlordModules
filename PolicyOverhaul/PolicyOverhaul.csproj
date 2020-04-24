@@ -199,6 +199,9 @@
       <HintPath>$(GameFolder)\bin\Win64_Shipping_Client\TaleWorlds.Network.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="TaleWorlds.ObjectSystem">
+      <HintPath>D:\SteamLibrary\steamapps\common\Mount &amp; Blade II Bannerlord\bin\Win64_Shipping_Client\TaleWorlds.ObjectSystem.dll</HintPath>
+    </Reference>
     <Reference Include="TaleWorlds.PlatformService, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>$(GameFolder)\bin\Win64_Shipping_Client\TaleWorlds.PlatformService.dll</HintPath>
@@ -253,8 +256,8 @@
   <ItemGroup>
     <Compile Include="CalculateProsperityChangePatch.cs" />
     <Compile Include="CalculatePolicyEffectOnSecurityPatch.cs" />
+    <Compile Include="CustomSaveDefiner.cs" />
     <Compile Include="DefaultPartySizeLimitModelPatch.cs" />
-    <Compile Include="DistributeLootAmongWinnersPatch.cs" />
     <Compile Include="GainRenownActionPatch.cs" />
     <Compile Include="InitializeAllPatch.cs" />
     <Compile Include="NewClanFinanceModel.cs" />
@@ -263,6 +266,8 @@
     <Compile Include="NewMarriageModel.cs" />
     <Compile Include="NewPolicies.cs" />
     <Compile Include="NewClanPoliticsModel.cs" />
+    <Compile Include="PartySpeedCalculatingModelPatch.cs" />
+    <Compile Include="FoodConsumptionBehaviorPatch.cs" />
     <Compile Include="PolicyOverhaulCampaignBehavior.cs" />
     <Compile Include="PolicyOverhaulSettings.cs" />
     <Compile Include="RegisterAllPatch.cs" />

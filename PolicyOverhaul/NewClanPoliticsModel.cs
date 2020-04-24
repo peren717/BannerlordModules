@@ -49,10 +49,20 @@ namespace PolicyOverhaul
                             }
                         }
                     }
-
                     if (clan.Kingdom.ActivePolicies.Contains(NewPolicies.Feudalism))
                     {
                         explainedNumber.Add((float)clan.Tier - 3, NewPolicies.Feudalism.Name);
+                    }
+                    if (clan.Kingdom.ActivePolicies.Contains(NewPolicies.HouseOfLords))
+                    {
+                        if(clan.Kingdom.RulingClan == clan)
+                        {
+                            explainedNumber.Add((float)clan.Kingdom.Clans.Count, NewPolicies.HouseOfLords.Name);
+                        }
+                        else
+                        {
+                            explainedNumber.Add(1f, NewPolicies.HouseOfLords.Name);
+                        }
                     }
                 }
             }

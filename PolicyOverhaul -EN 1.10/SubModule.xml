@@ -1,7 +1,7 @@
 ﻿<Module>
   <Name value="Policy Overhaul"/>
   <Id value="PolicyOverhaul"/>
-  <Version value="v0.0.7"/>
+  <Version value="v1.1.0"/>
   <SingleplayerModule value="true"/>
   <MultiplayerModule value="false"/>
   <Official value="false"/>
@@ -17,6 +17,15 @@
       <Name value="PolicyOverhaul"/>
       <DLLName value="PolicyOverhaul.dll"/>
       <SubModuleClassType value="PolicyOverhaul.SubModule"/>
+      <Tags>
+        <Tag key="DedicatedServerType" value="none" />
+        <Tag key="IsNoRenderModeElement" value="false" />
+      </Tags>
+    </SubModule>
+    <SubModule>
+      <Name value="MBOptionScreen" />
+      <DLLName value="MBOptionScreen.dll" />
+      <SubModuleClassType value="MBOptionScreen.MBOptionScreenSubModule" />
       <Tags>
         <Tag key="DedicatedServerType" value="none" />
         <Tag key="IsNoRenderModeElement" value="false" />

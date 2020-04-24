@@ -25,7 +25,7 @@ namespace PolicyOverhaul
                 new TextObject("待在城中的士兵每日训练经验翻倍。\n非驻扎的士兵每日工资翻倍。", null), -0.1f, -0.2f, 0.3f));
             __instance.Policies.Add(NewPolicies.Republic.Initialize(new TextObject("共和制", null), new TextObject("国家将由最有影响力的家族统领。", null),
                 new TextObject("共和制。", null),
-                new TextObject("每隔一段时间，国家元首将由贵族们选举产生。", null), -0.9f, -0.9f, 0.1f));
+                new TextObject("每隔一段时间，国家元首将由贵族们选举产生。\n如果国家存在僭主制或封建世袭，将无法进行选举。", null), -0.9f, -0.9f, 0.1f));
             __instance.Policies.Add(NewPolicies.Feudalism.Initialize(new TextObject("封建主义", null), new TextObject("封建等级制，附庸在封建时得到了领主的保护，举凡其生命、声誉、财产受到威胁时，领主有义务要保护。领主也不能对附庸有损害其权利的行为，否则附庸可以提出终止关系的要求。", null),
                 new TextObject("封建主义。", null),
                 new TextObject("家族将根据自身等级得到影响力调整 \n统治者家族首领部队上限增加50。 \n非统治者家族将很难得到声望", null), -0.9f, -0.9f, 0.1f));
@@ -46,6 +46,15 @@ namespace PolicyOverhaul
             __instance.Policies.Add(NewPolicies.Centralization.Initialize(new TextObject("中央集权", null), new TextObject("中央集权是一种国家政权的制度，以国家职权统一于中央政府，削弱地方政府力量为标志。", null),
                 new TextObject("中央集权制。", null),
                 new TextObject("国家所有城镇收归于统治者家族。 \n统治者家族要向所有封臣每日发放俸禄。", null), 0.9f, -0.9f, -0.9f));
+            __instance.Policies.Add(NewPolicies.HouseOfLords.Initialize(new TextObject("贵族联盟", null), new TextObject("所有拥有直接财产的贵族的权力相当，并掌控强大的权利和特权。", null),
+                new TextObject("贵族联盟。", null),
+                new TextObject("国家每有一个贵族，统治者影响力减1 \n非统治者家族部队上限加20，每日影响力加1", null), -0.2f, 0.5f, 0.2f));
+            __instance.Policies.Add(NewPolicies.NormadicHorde.Initialize(new TextObject("游牧传统", null), new TextObject("军队行进过程中将进行狩猎，畜养。", null),
+                new TextObject("游牧传统。", null),
+                new TextObject("军队行军速度-5% \n军队将会在行军过程中不会消耗食物。", null), 0.0f, -0.5f, 0.2f));
+            __instance.Policies.Add(NewPolicies.Tyrant.Initialize(new TextObject("僭主制", null), new TextObject("地方军事将领越过元老院和公民大会的权威，国家将由最有影响力的军事将领所领导。", null),
+                new TextObject("僭主制。", null),
+                new TextObject("共和制将不会生效 \n每个选举周期结束后，国家将由影响力加部队上限最高者领导（家族全部军队）。 \n统治者部队上限增加50。", null), 0.8f, -0.5f, 0.2f));
 
 
 

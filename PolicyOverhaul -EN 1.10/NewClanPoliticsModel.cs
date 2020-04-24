@@ -33,17 +33,35 @@ namespace PolicyOverhaul
                             explainedNumber.Add(-(explainedNumber.ResultNumber + clan.Influence), NewPolicies.ConstitutionaMonarchy.Name);
                         }
                     }
-
                     if (clan.Kingdom.ActivePolicies.Contains(DefaultPolicies.CouncilOfTheCommons))
                     {
+                        clan.Kingdom.RemovePolicy(DefaultPolicies.CouncilOfTheCommons);
+                    }
+                    if (clan.Kingdom.ActivePolicies.Contains(NewPolicies.CouncilOfTheCommens))
+                    {
                         int num2 = -(clan.Settlements.Sum((Settlement t) => t.Notables.Count));
-                        explainedNumber.Add((clan.Settlements.Sum((Settlement t) => t.Notables.Count)) + (float)num2 * 0.2f, DefaultPolicies.CouncilOfTheCommons.Name);
+                        explainedNumber.Add((float)num2 * 0.2f, DefaultPolicies.CouncilOfTheCommons.Name);
                         foreach (Settlement settlement in clan.Settlements)
                         {
                             foreach (Hero hero in settlement.Notables)
                             {
                                 hero.AddPower(1);
                             }
+                        }
+                    }
+                    if (clan.Kingdom.ActivePolicies.Contains(NewPolicies.Feudalism))
+                    {
+                        explainedNumber.Add((float)clan.Tier - 3, NewPolicies.Feudalism.Name);
+                    }
+                    if (clan.Kingdom.ActivePolicies.Contains(NewPolicies.HouseOfLords))
+                    {
+                        if(clan.Kingdom.RulingClan == clan)
+                        {
+                            explainedNumber.Add((float)clan.Kingdom.Clans.Count, NewPolicies.HouseOfLords.Name);
+                        }
+                        else
+                        {
+                            explainedNumber.Add(1f, NewPolicies.HouseOfLords.Name);
                         }
                     }
                 }
