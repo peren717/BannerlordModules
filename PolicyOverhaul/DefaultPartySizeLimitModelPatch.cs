@@ -17,7 +17,7 @@ namespace PolicyOverhaul
         {
             if (party.LeaderHero != null && !party.IsCaravan)
             {
-                if (party.MapFaction != null && party.MapFaction != party.LeaderHero.Clan)
+                if (party.MapFaction != null && party.MapFaction != party.LeaderHero.Clan && party.MapFaction.IsKingdomFaction)
                 {
                     if (((Kingdom)party.MapFaction).ActivePolicies.Contains(NewPolicies.Feudalism) && party.LeaderHero == party.LeaderHero.Clan.Leader && party.MapFaction.Leader == party.LeaderHero)
                     {

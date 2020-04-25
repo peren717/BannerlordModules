@@ -15,7 +15,7 @@ namespace PolicyOverhaul
         {
             if (mobileParty.Party.LeaderHero != null)
             {
-                if (mobileParty.Party.MapFaction != null && mobileParty.Party.MapFaction != mobileParty.Party.LeaderHero.Clan)
+                if (mobileParty.Party.MapFaction != null && mobileParty.Party.MapFaction != mobileParty.Party.LeaderHero.Clan && mobileParty.MapFaction.IsKingdomFaction)
                 {
                     if (((Kingdom)mobileParty.Party.MapFaction).ActivePolicies.Contains(NewPolicies.NormadicHorde))
                     {
