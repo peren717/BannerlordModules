@@ -49,11 +49,11 @@ namespace PolicyOverhaul
                     if (kingdom.Name.ToString() == "阿塞莱")
                     {
                         kingdom.ActivePolicies.Add(NewPolicies.Polygamy);
+                        kingdom.ActivePolicies.Add(NewPolicies.BigCaravan);
                     }
                     else if (kingdom.Name.ToString() == "库赛特")
                     {
-                        //kingdom.ActivePolicies.Add(NewPolicies.NormadicHorde);
-                        kingdom.ActivePolicies.Add(NewPolicies.Slavery);
+                        kingdom.ActivePolicies.Add(NewPolicies.NormadicHorde);
                     }
                     else if (kingdom.Name.ToString() == "北部帝国")
                     {
@@ -61,21 +61,17 @@ namespace PolicyOverhaul
                     }
                     else if (kingdom.Name.ToString() == "南部帝国")
                     {
-                        kingdom.ActivePolicies.Add(NewPolicies.Republic);
-                        kingdom.ActivePolicies.Add(NewPolicies.Feudalism);
-                        kingdom.ActivePolicies.Add(DefaultPolicies.FeudalInheritance);
                         kingdom.ActivePolicies.Add(NewPolicies.Centralization);
 
                     }
                     else if (kingdom.Name.ToString() == "西部帝国")
                     {
-                        kingdom.ActivePolicies.Add(NewPolicies.Republic);
                         kingdom.ActivePolicies.Add(NewPolicies.Tyrant);
 
                     }
                     else if (kingdom.Name.ToString() == "瓦兰迪亚")
                     {
-                        kingdom.ActivePolicies.Add(NewPolicies.Vassalism);
+                        kingdom.ActivePolicies.Add(NewPolicies.Feudalism);
                     }
                     else if (kingdom.Name.ToString() == "斯特吉亚")
                     {
