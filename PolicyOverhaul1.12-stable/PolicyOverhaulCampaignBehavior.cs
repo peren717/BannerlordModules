@@ -18,6 +18,8 @@ namespace PolicyOverhaul
     {
         private Dictionary<string, int> timerList = new Dictionary<string, int>();
         private Dictionary<string, int> timerList2 = new Dictionary<string, int>();
+        private Dictionary<string, int> timerList3 = new Dictionary<string, int>();
+
 
         int clock = 0;
         readonly int electionCycle = PolicyOverhaulSettings.Instance.ElectionCycle;
@@ -62,6 +64,7 @@ namespace PolicyOverhaul
                         kingdom.ActivePolicies.Add(NewPolicies.Republic);
                         kingdom.ActivePolicies.Add(NewPolicies.Feudalism);
                         kingdom.ActivePolicies.Add(DefaultPolicies.FeudalInheritance);
+                        kingdom.ActivePolicies.Add(NewPolicies.Centralization);
 
                     }
                     else if (kingdom.Name.ToString() == "西部帝国")
@@ -100,6 +103,10 @@ namespace PolicyOverhaul
                 {
                     timerList2.Add(kingdom.Name.ToString(), 0);
                 }
+                if (!this.timerList3.ContainsKey(kingdom.Name.ToString()))
+                {
+                    timerList3.Add(kingdom.Name.ToString(), 0);
+                }
 
             }
         }
@@ -109,6 +116,8 @@ namespace PolicyOverhaul
             dataStore.SyncData<int>("clock", ref this.clock);
             dataStore.SyncData<Dictionary<string, int>>("timerList", ref this.timerList);
             dataStore.SyncData<Dictionary<string, int>>("timerList2", ref this.timerList2);
+            dataStore.SyncData<Dictionary<string, int>>("timerList3", ref this.timerList3);
+
 
         }
 
@@ -121,25 +130,35 @@ namespace PolicyOverhaul
                     Kingdom kingdom = settlement.OwnerClan.Kingdom;
                     if (kingdom.ActivePolicies.Contains(NewPolicies.Centralization))
                     {
-                        if (settlement.OwnerClan != kingdom.RulingClan && settlement.IsTown)
+                        if (settlement.OwnerClan != kingdom.RulingClan)
                         {
                             if (settlement.OwnerClan == Clan.PlayerClan)
                             {
-                                InformationManager.DisplayMessage(new InformationMessage("你的" + settlement.Name + "已被收归" + kingdom.Name + "所有", Colors.Red));
-                                InformationManager.AddQuickInformation(new TextObject("你的" + settlement.Name + "已被收归" + kingdom.Name + "所有。作为补偿你获得" + settlement.Prosperity + "金币和50点声望。", null));
-                                settlement.OwnerClan.AddRenown(50);
-                                GiveGoldAction.ApplyBetweenCharacters(kingdom.RulingClan.Leader, Hero.MainHero, (int)settlement.Prosperity, false);
+                                if(settlement.IsTown)
+                                {
+                                    InformationManager.DisplayMessage(new InformationMessage("你的" + settlement.Name + "已被收归" + kingdom.Name + "所有", Colors.Red));
+                                    InformationManager.AddQuickInformation(new TextObject("你的" + settlement.Name + "已被收归" + kingdom.Name + "所有。作为补偿你获得" + settlement.Prosperity + "金币和50点声望。", null));
+                                    settlement.OwnerClan.AddRenown(50);
+                                    GiveGoldAction.ApplyBetweenCharacters(kingdom.RulingClan.Leader, Hero.MainHero, (int)settlement.Prosperity, false);
+                                    ChangeOwnerOfSettlementAction.ApplyByDefault(kingdom.RulingClan.Leader, settlement);
+                                }
+
 
                             }
                             else
                             {
-                                InformationManager.DisplayMessage(new InformationMessage(settlement.Name + "已被收归" + kingdom.Name + "所有", Colors.Gray));
+                                if (settlement.IsTown)
+                                {
+                                    InformationManager.DisplayMessage(new InformationMessage(settlement.Name + "已被收归" + kingdom.Name + "所有", Colors.Gray));
+                                    ChangeOwnerOfSettlementAction.ApplyByDefault(kingdom.RulingClan.Leader, settlement);
+                                }
+
                             }
-                            ChangeOwnerOfSettlementAction.ApplyByDefault(kingdom.RulingClan.Leader, settlement);
 
 
                         }
                     }
+
 
                 }
             }
@@ -199,6 +218,29 @@ namespace PolicyOverhaul
                         else
                         {
                             timerList2.Add(clan.Kingdom.Name.ToString(), clock);
+                        }
+                    }
+                    /////////////////////////////////////////////////////////////////////////////////
+                    if (clan.Kingdom.ActivePolicies.Contains(NewPolicies.Centralization))
+                    {
+                        if (timerList3.TryGetValue(clan.Kingdom.Name.ToString(), out int t))
+                        {
+                            if (clock - timerList3[clan.Kingdom.Name.ToString()] > electionCycle)
+                            {
+                                timerList3[clan.Kingdom.Name.ToString()] = clock;
+                                InformationManager.AddQuickInformation(new TextObject(clan.Kingdom.Name.ToString()+"开始了新一轮的委任。", null));
+                                foreach (Settlement settlement in clan.Kingdom.Settlements)
+                                {
+                                    if(settlement.IsCastle && !settlement.IsUnderSiege)
+                                    {
+                                        Campaign.Current.AddDecision(new SettlementClaimantPreliminaryDecision(clan.Kingdom.RulingClan, settlement), true);
+                                    }
+                                }
+                            }
+                        }
+                        else
+                        {
+                            timerList3.Add(clan.Kingdom.Name.ToString(), clock);
                         }
                     }
                     if (clan.Kingdom.ActivePolicies.Contains(NewPolicies.Vassalism))

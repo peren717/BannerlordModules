@@ -19,7 +19,7 @@ namespace PolicyOverhaul
             ExplainedNumber explainedNumber = new ExplainedNumber(num, explanation, null);
             try
             {
-                if (explanation != null)
+                if (explanation != null && explanation.Lines.Count > 0)
                 {
                     explanation.Lines.Remove(explanation.Lines.Last<StatExplainer.ExplanationLine>());
                 }
