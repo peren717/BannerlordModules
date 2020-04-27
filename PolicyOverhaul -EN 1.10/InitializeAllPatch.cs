@@ -22,7 +22,7 @@ namespace PolicyOverhaul
             __instance.Policies.Add(NewPolicies.ProfessionalArmy.Initialize(new TextObject("Professional Soldier", null), 
                 new TextObject("Enabling every soldier in the country to focus their time and energy on martial training.", null), 
                 new TextObject("professional soldier.", null), new TextObject("Troops in the settlements recieve double XP from training.\nTroops in a mobile party recieve double wages.", null), -0.1f, -0.2f, 0.3f));
-            __instance.Policies.Add(NewPolicies.Republic.Initialize(new TextObject("Republic", null), new TextObject("a state in which supreme power is held by the people and their elected representatives, and which has an elected or nominated president rather than a monarch.", null), 
+            __instance.Policies.Add(NewPolicies.Republic.Initialize(new TextObject("Republic", null), new TextObject("A state in which supreme power is held by the people and their elected representatives, and which has an elected or nominated president rather than a monarch.", null), 
                 new TextObject("Republic", null), new TextObject("An election will be held to determine the next ruler. \nHas no effect when Feudal inheritance or Tyrant active.", null), -0.9f, -0.9f, 0.1f));
             __instance.Policies.Add(NewPolicies.Feudalism.Initialize(new TextObject("Feudalism", null), new TextObject("A set of reciprocal legal and military obligations which existed among the warrior nobility and revolved around the three key concepts of lords, vassals and fiefs.", null),
                 new TextObject("Feudalism.", null),
@@ -47,9 +47,9 @@ namespace PolicyOverhaul
             __instance.Policies.Add(NewPolicies.HouseOfLords.Initialize(new TextObject("House of Lords", null), new TextObject("An alliance of nobles that limits the power of the ruler.", null),
                 new TextObject("House of Lords.", null),
                 new TextObject("Ruler influence decreased by 1 per clan in thier realm. \nNon-ruler clan party limit increased by 20. \nNon-ruler clan influence increased by 1 per day", null), -0.2f, 0.5f, 0.2f));
-            __instance.Policies.Add(NewPolicies.NormadicHorde.Initialize(new TextObject("Normadic Tradition", null), new TextObject("Nomadic pastoralism is a form of pastoralism when livestock are herded in order to find fresh pastures on which to graze.", null),
-                new TextObject("Normadic Tradition.", null),
-                new TextObject("Party speed-5%. \nParty consumes no food.", null), 0.0f, -0.5f, 0.2f));
+            //__instance.Policies.Add(NewPolicies.NormadicHorde.Initialize(new TextObject("Normadic Tradition", null), new TextObject("Nomadic pastoralism is a form of pastoralism when livestock are herded in order to find fresh pastures on which to graze.", null),
+            //    new TextObject("Normadic Tradition.", null),
+            //    new TextObject("Party speed-5%. \nParty consumes no food.", null), 0.0f, -0.5f, 0.2f));
             __instance.Policies.Add(NewPolicies.Tyrant.Initialize(new TextObject("Tyrant Rules", null),
                 new TextObject("A tyrant as a person who rules without law, using extreme and cruel methods against both his own people and others.", null),
                 new TextObject("Tyrant rule.", null),

@@ -31,8 +31,22 @@ namespace PolicyOverhaul
             NewPolicies.CouncilOfTheCommens = game.ObjectManager.RegisterPresumedObject<PolicyObject>(new PolicyObject("CouncilOfTheCommens"));
             NewPolicies.Centralization = game.ObjectManager.RegisterPresumedObject<PolicyObject>(new PolicyObject("Centralization"));
             NewPolicies.HouseOfLords = game.ObjectManager.RegisterPresumedObject<PolicyObject>(new PolicyObject("HouseOfLords"));
-            //NewPolicies.NormadicHorde = game.ObjectManager.RegisterPresumedObject<PolicyObject>(new PolicyObject("NormadicHorde"));
+            NewPolicies.NormadicHorde = game.ObjectManager.RegisterPresumedObject<PolicyObject>(new PolicyObject("NormadicHorde"));
             NewPolicies.Tyrant = game.ObjectManager.RegisterPresumedObject<PolicyObject>(new PolicyObject("Tyrant"));
+            //NewPolicies.polytheism = game.ObjectManager.RegisterPresumedObject<PolicyObject>(new PolicyObject("polytheism"));
+            //NewPolicies.Monotheism = game.ObjectManager.RegisterPresumedObject<PolicyObject>(new PolicyObject("Monotheism"));
+            //NewPolicies.atheism = game.ObjectManager.RegisterPresumedObject<PolicyObject>(new PolicyObject("atheism"));
+            NewPolicies.Tuntian = game.ObjectManager.RegisterPresumedObject<PolicyObject>(new PolicyObject("Tuntian"));
+            NewPolicies.Physiocracy = game.ObjectManager.RegisterPresumedObject<PolicyObject>(new PolicyObject("StressingAgriculture"));
+            NewPolicies.PublicHealth = game.ObjectManager.RegisterPresumedObject<PolicyObject>(new PolicyObject("PublicHealth"));
+            NewPolicies.BigCaravan = game.ObjectManager.RegisterPresumedObject<PolicyObject>(new PolicyObject("PublicHealth"));
+
+
+
+
+
+
+
 
 
 

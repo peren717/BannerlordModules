@@ -48,7 +48,7 @@ namespace PolicyOverhaul
                     }
                     else if (kingdom.Name.ToString() == "Khuzait")
                     {
-                        kingdom.ActivePolicies.Add(NewPolicies.NormadicHorde);
+                        //kingdom.ActivePolicies.Add(NewPolicies.NormadicHorde);
                         kingdom.ActivePolicies.Add(NewPolicies.Slavery);
                     }
                     else if (kingdom.Name.ToString() == "Northern Empire")

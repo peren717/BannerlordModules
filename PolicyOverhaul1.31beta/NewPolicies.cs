@@ -20,8 +20,20 @@ namespace PolicyOverhaul
         public static PolicyObject CouncilOfTheCommens { get; set; }
         public static PolicyObject Centralization { get; set; }
         public static PolicyObject HouseOfLords { get; set; }
-        //public static PolicyObject NormadicHorde { get; set; }
+        public static PolicyObject NormadicHorde { get; set; }
         public static PolicyObject Tyrant { get; set; }
+        //public static PolicyObject polytheism { get; set; }
+        //public static PolicyObject Monotheism { get; set; }
+        //public static PolicyObject atheism { get; set; }
+        public static PolicyObject Tuntian { get; set; }
+        public static PolicyObject Physiocracy { get; set; }
+        public static PolicyObject PublicHealth { get; set; }
+        public static PolicyObject BigCaravan { get; set; }
+
+
+
+
+
 
 
 
