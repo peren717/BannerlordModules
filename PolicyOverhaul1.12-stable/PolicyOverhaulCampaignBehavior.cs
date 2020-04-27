@@ -261,7 +261,7 @@ namespace PolicyOverhaul
                     {
                         if (clan.Leader.GetRelation(otherClan.Leader) < -90 && MBRandom.RandomFloatRanged(0f, 1f) < actProbability)
                         {
-                            if (MBRandom.RandomFloatRanged(0f, 1f) < 0.1 * Math.Max(otherClan.Leader.GetAttributeValue(CharacterAttributesEnum.Vigor), otherClan.Leader.GetAttributeValue(CharacterAttributesEnum.Endurance)))
+                            if (MBRandom.RandomFloatRanged(0f, 1f) < 0.15 * Math.Max(otherClan.Leader.GetAttributeValue(CharacterAttributesEnum.Vigor), otherClan.Leader.GetAttributeValue(CharacterAttributesEnum.Endurance)))
                             {
                                 if (otherClan.Leader.IsHumanPlayerCharacter)
                                 {
@@ -306,15 +306,11 @@ namespace PolicyOverhaul
                             return;
                         }
 
-                        if (clan.Leader.GetRelation(otherClan.Leader) < -50 && MBRandom.RandomFloatRanged(0f, 1f) < actProbability)
-                        {
-                            if (otherClan == kingdom.RulingClan && !kingdom.ActivePolicies.Contains(NewPolicies.ConstitutionaMonarchy) && clan.Influence > 200)
-                            {
-                                clan.Influence -= 50;
-                                Campaign.Current.AddDecision(new KingdomPolicyDecision(clan, NewPolicies.ConstitutionaMonarchy, false), true);
-                            }
-                            return;
-                        }
+                        RaisePolicy(clan, otherClan, NewPolicies.ConstitutionaMonarchy);
+                        RaisePolicy(clan, otherClan, NewPolicies.HouseOfLords);
+                        RaisePolicy(clan, otherClan, NewPolicies.Republic);
+                        RaisePolicy(clan, otherClan, NewPolicies.CouncilOfTheCommens);
+
 
                     }
                 }
@@ -328,6 +324,21 @@ namespace PolicyOverhaul
             }
 
 
+        }
+
+
+        private void RaisePolicy(Clan clan, Clan otherClan, PolicyObject policy)
+        {
+            Kingdom kingdom = clan.Kingdom;
+            if (clan.Leader.GetRelation(otherClan.Leader) < -50 && MBRandom.RandomFloatRanged(0f, 1f) < actProbability)
+            {
+                if (otherClan == kingdom.RulingClan && !kingdom.ActivePolicies.Contains(policy) && clan.Influence > 200)
+                {
+                    clan.Influence -= 50;
+                    Campaign.Current.AddDecision(new KingdomPolicyDecision(clan, policy, false), true);
+                }
+                return;
+            }
         }
 
         private void SupportFriend(Clan clan)

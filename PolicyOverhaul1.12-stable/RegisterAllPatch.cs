@@ -39,7 +39,7 @@ namespace PolicyOverhaul
             NewPolicies.Tuntian = game.ObjectManager.RegisterPresumedObject<PolicyObject>(new PolicyObject("Tuntian"));
             NewPolicies.Physiocracy = game.ObjectManager.RegisterPresumedObject<PolicyObject>(new PolicyObject("StressingAgriculture"));
             NewPolicies.PublicHealth = game.ObjectManager.RegisterPresumedObject<PolicyObject>(new PolicyObject("PublicHealth"));
-            NewPolicies.BigCaravan = game.ObjectManager.RegisterPresumedObject<PolicyObject>(new PolicyObject("PublicHealth"));
+            NewPolicies.BigCaravan = game.ObjectManager.RegisterPresumedObject<PolicyObject>(new PolicyObject("BigCaravan"));
 
 
 

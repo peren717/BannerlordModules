@@ -17,7 +17,7 @@ namespace PolicyOverhaul
             float num = base.CalculateGarrisonXpBonusMultiplier(town, explanation);
             try
             {
-                if(town.Settlement.OwnerClan.Kingdom.HasPolicy(NewPolicies.ProfessionalArmy))
+                if(town.Settlement.OwnerClan.Kingdom.HasPolicy(NewPolicies.ProfessionalArmy) && !town.Settlement.OwnerClan.Kingdom.HasPolicy(NewPolicies.Tuntian))
                 {
                     num = 2 * num;
                 }
