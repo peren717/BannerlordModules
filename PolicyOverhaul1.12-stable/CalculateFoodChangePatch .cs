@@ -14,7 +14,7 @@ namespace PolicyOverhaul
     class CalculateFoodChangePatch
     {
         [HarmonyPostfix]
-        private static void Postfix(Town town, ref float __result, StatExplainer explanation = null)
+        private static void Postfix(Town town, ref float __result, ref StatExplainer explanation)
         {
             float num = __result;
             ExplainedNumber explainedNumber = new ExplainedNumber(num, explanation, null);

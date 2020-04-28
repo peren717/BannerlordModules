@@ -55,15 +55,6 @@ namespace PolicyOverhaul
             __instance.Policies.Add(NewPolicies.Tyrant.Initialize(new TextObject("僭主制", null), new TextObject("地方军事将领越过元老院和公民大会的权威，国家将由最有影响力的军事将领所领导。", null),
                 new TextObject("僭主制。", null),
                 new TextObject("共和制将不会生效 \n每个选举周期结束后，国家将由影响力加部队上限最高者领导（家族全部军队）。 \n统治者部队上限增加50。", null), 0.8f, -0.5f, 0.2f));
-            //__instance.Policies.Add(NewPolicies.Monotheism.Initialize(new TextObject("mo一神论", null), new TextObject("一神论，认为只存在一个神的信仰。", null),
-            //    new TextObject("一神论。", null),
-            //    new TextObject("", null), 0f, .05f, -0.5f));
-            //__instance.Policies.Add(NewPolicies.polytheism.Initialize(new TextObject("po多神论", null), new TextObject("对于一神论或一神教而言，指崇拜或信仰许多神的信仰体系或者宗教教条。", null),
-            //    new TextObject("多神论。", null),
-            //    new TextObject("", null), 0.5f, -0.5f, 0f));
-            //__instance.Policies.Add(NewPolicies.atheism.Initialize(new TextObject("at无神论", null), new TextObject("一种否认、否定、不相信神明存在的信念。", null),
-            //    new TextObject("无神论。", null),
-            //    new TextObject("", null), -0.5f, 0f, 0.5f));
             __instance.Policies.Add(NewPolicies.Tuntian.Initialize(new TextObject("屯田", null), new TextObject("城堡里的士兵在闲暇之余将从事农业生产。", null),
                 new TextObject("屯田。", null),
                 new TextObject("职业军人制将不会生效 \n每有一名士兵，城堡的粮食产量加0.1 \n城堡内驻军只能得到半数训练经验", null), 0.1f, -0.1f, 0.1f));
