@@ -38,9 +38,8 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>D:\SteamLibrary\steamapps\common\Mount &amp; Blade II Bannerlord\Modules\PolicyOverhaul\bin\Win64_Shipping_Client\0Harmony.dll</HintPath>
     </Reference>
-    <Reference Include="MBOptionScreen.v2.0.6, Version=2.0.6.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>D:\SteamLibrary\steamapps\common\Mount &amp; Blade II Bannerlord\Modules\PolicyOverhaul\bin\Win64_Shipping_Client\MBOptionScreen.v2.0.6.dll</HintPath>
+    <Reference Include="ModLib">
+      <HintPath>D:\SteamLibrary\steamapps\common\Mount &amp; Blade II Bannerlord\Modules\ModLib\bin\Win64_Shipping_Client\ModLib.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -272,7 +271,6 @@
     <Compile Include="NewMarriageModel.cs" />
     <Compile Include="NewPolicies.cs" />
     <Compile Include="NewClanPoliticsModel.cs" />
-    <Compile Include="PartySpeedCalculatingModelPatch.cs" />
     <Compile Include="FoodConsumptionBehaviorPatch.cs" />
     <Compile Include="PolicyOverhaulCampaignBehavior.cs" />
     <Compile Include="PolicyOverhaulSettings.cs" />

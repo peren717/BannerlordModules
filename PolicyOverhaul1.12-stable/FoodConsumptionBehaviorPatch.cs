@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Linq;
 using HarmonyLib;
-using MBOptionScreen.Settings;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.SandBox.CampaignBehaviors;
 using TaleWorlds.CampaignSystem.SandBox.GameComponents.Map;
