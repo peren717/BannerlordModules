@@ -51,8 +51,6 @@ namespace PolicyOverhaul
             {
                 CampaignGameStarter campaignGameStarter = (CampaignGameStarter)gameStarterObject;
                 campaignGameStarter.AddBehavior(new PolicyOverhaulCampaignBehavior());
-                gameStarterObject.AddModel(new NewClanPoliticsModel());
-                gameStarterObject.AddModel(new NewMarriageModel());
             }
         }
     }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HarmonyLib;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,11 +12,13 @@ using TaleWorlds.Library;
 
 namespace PolicyOverhaul
 {
-    class NewClanPoliticsModel : DefaultClanPoliticsModel
+    [HarmonyPatch(typeof(DefaultClanPoliticsModel), "CalculateInfluenceChange")]
+    class ClanPoliticsModelPatch
     {
-        public override float CalculateInfluenceChange(Clan clan, StatExplainer explanation = null)
+        [HarmonyPostfix]
+        static void PostFix(float __result, Clan clan, ref StatExplainer explanation)
         {
-            float num = base.CalculateInfluenceChange(clan, explanation);
+            float num = __result;
             ExplainedNumber explainedNumber = new ExplainedNumber(num, explanation, null);
             try
             {
@@ -71,7 +74,7 @@ namespace PolicyOverhaul
                 InformationManager.DisplayMessage(new InformationMessage(e.Message));
             }
 
-            return explainedNumber.ResultNumber;
+            __result = explainedNumber.ResultNumber;
         }
     }
 }

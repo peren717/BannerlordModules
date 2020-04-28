@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HarmonyLib;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,9 +9,11 @@ using TaleWorlds.CampaignSystem.SandBox.GameComponents;
 
 namespace PolicyOverhaul
 {
-    class NewMarriageModel : DefaultMarriageModel
+    [HarmonyPatch(typeof(DefaultMarriageModel), "IsSuitableForMarriage")]
+    class MarriageModelPatch
     {
-        public override bool IsSuitableForMarriage(Hero maidenOrSuitor)
+        [HarmonyPrefix]
+        static bool Prefix(DefaultMarriageModel __instance, ref bool __result, Hero maidenOrSuitor)
         {
             if (maidenOrSuitor.Clan != null && maidenOrSuitor.Clan.Kingdom != null)
             {
@@ -18,19 +21,19 @@ namespace PolicyOverhaul
                 {
                     if (!maidenOrSuitor.IsNoble || maidenOrSuitor.IsTemplate)
                     {
-                        return false;
+                        return true;
                     }
                     if (maidenOrSuitor.IsFemale)
                     {
-                        return maidenOrSuitor.CharacterObject.Age < (float)this.MaximumMarriageAgeFemale && maidenOrSuitor.CharacterObject.Age >= (float)this.MinimumMarriageAgeFemale;
+                        __result = maidenOrSuitor.CharacterObject.Age < (float)__instance.MaximumMarriageAgeFemale && maidenOrSuitor.CharacterObject.Age >= (float)__instance.MinimumMarriageAgeFemale;
                     }
-                    return maidenOrSuitor.CharacterObject.Age < (float)this.MaximumMarriageAgeMale && maidenOrSuitor.CharacterObject.Age >= (float)this.MinimumMarriageAgeMale;
+                    __result= maidenOrSuitor.CharacterObject.Age < (float)__instance.MaximumMarriageAgeMale && maidenOrSuitor.CharacterObject.Age >= (float)__instance.MinimumMarriageAgeMale;
                 }
-                return base.IsSuitableForMarriage(maidenOrSuitor);
+                return true;
             }
             else
             {
-                return base.IsSuitableForMarriage(maidenOrSuitor);
+                return true;
             }
         }
     }

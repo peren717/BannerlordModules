@@ -266,11 +266,11 @@
     <Compile Include="InitializeAllPatch.cs" />
     <Compile Include="CalculatePartyWagePatch.cs" />
     <Compile Include="DefaultClanFinanceModelPatch.cs" />
-    <Compile Include="NewDailyTroopXPBonusModel.cs" />
+    <Compile Include="DailyTroopXpBonusModelPatch.cs" />
     <Compile Include="NewKingSelectionKingdomDecision.cs" />
-    <Compile Include="NewMarriageModel.cs" />
+    <Compile Include="MarriageModelPatch.cs" />
     <Compile Include="NewPolicies.cs" />
-    <Compile Include="NewClanPoliticsModel.cs" />
+    <Compile Include="ClanPoliticsModelPatch.cs" />
     <Compile Include="FoodConsumptionBehaviorPatch.cs" />
     <Compile Include="PolicyOverhaulCampaignBehavior.cs" />
     <Compile Include="PolicyOverhaulSettings.cs" />
