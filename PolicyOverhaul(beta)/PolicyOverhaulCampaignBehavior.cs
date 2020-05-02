@@ -74,6 +74,7 @@ namespace PolicyOverhaul
                         else if (kingdom.Name.ToString() == "瓦兰迪亚" || kingdom.Name.ToString() == "Vlandia")
                         {
                             kingdom.ActivePolicies.Add(NewPolicies.Feudalism);
+                            kingdom.ActivePolicies.Add(NewPolicies.Vassalism);
                         }
                         else if (kingdom.Name.ToString() == "斯特吉亚" || kingdom.Name.ToString() == "Sturgia")
                         {

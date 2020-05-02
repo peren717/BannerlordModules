@@ -74,6 +74,7 @@ namespace PolicyOverhaul
                         else if (kingdom.Name.ToString() == "瓦兰迪亚" || kingdom.Name.ToString() == "Vlandia")
                         {
                             kingdom.ActivePolicies.Add(NewPolicies.Feudalism);
+                            kingdom.ActivePolicies.Add(NewPolicies.Vassalism);
                         }
                         else if (kingdom.Name.ToString() == "斯特吉亚" || kingdom.Name.ToString() == "Sturgia")
                         {
@@ -348,7 +349,6 @@ namespace PolicyOverhaul
 
                                     TextObject assasin_2 = new TextObject("{=assasin_2}You are attacked by someone sent by {leader} of {kingdom}. Luckly you survived.", null);
                                     assasin_2.SetTextVariable("leader", clan.Leader.Name.ToString());
-                                    assasin_2.SetTextVariable("otherLeader", otherClan.Leader.Name.ToString());
                                     assasin_2.SetTextVariable("kingdom", clan.Kingdom.Name.ToString());
                                     InformationManager.AddQuickInformation(assasin_2);
                                 }
@@ -365,7 +365,6 @@ namespace PolicyOverhaul
 
                                     TextObject assasin_3 = new TextObject("{=assasin_3}You are attacked by someone sent by {leader} of {kingdom}. You were gravely wounded.", null);
                                     assasin_3.SetTextVariable("leader", clan.Leader.Name.ToString());
-                                    assasin_3.SetTextVariable("otherLeader", otherClan.Leader.Name.ToString());
                                     assasin_3.SetTextVariable("kingdom", clan.Kingdom.Name.ToString());
                                     InformationManager.AddQuickInformation(assasin_3);
                                     otherClan.Leader.HitPoints = 1;

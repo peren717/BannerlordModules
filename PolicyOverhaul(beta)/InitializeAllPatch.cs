@@ -28,7 +28,7 @@ namespace PolicyOverhaul
                 new TextObject("{=Republic_effect}An election will be held to determine the next ruler. \nHas no effect when Feudal inheritance or Tyrant active.", null), -0.9f, 0.1f, 0.5f));
             __instance.Policies.Add(NewPolicies.Feudalism.Initialize(new TextObject("{=Feudalism_name}Feudalism", null), new TextObject("{=Feudalism_desc}A set of reciprocal legal and military obligations which existed among the warrior nobility and revolved around the three key concepts of lords, vassals and fiefs.", null),
                 new TextObject("{=Feudalism_name}Feudalism.", null),
-                new TextObject("{=Feudalism_effect}Clans recieve influence based on their tiers. \nRuler clan party limit +50. \nNon-ruler clan will get little influence.", null), -0.9f, -0.9f, 0.1f));
+                new TextObject("{=Feudalism_effect}Clans recieve influence based on their tiers. \nRuler clan party limit +50. \nNon-ruler clan will get little renown.", null), -0.9f, -0.9f, 0.1f));
             __instance.Policies.Add(NewPolicies.Vassalism.Initialize(new TextObject("{=Vassalism_name}Vassalism", null), new TextObject("{=Vassalism_desc}The vassal's vassal is not my vassal.", null),
                 new TextObject("{=Vassalism_name}Vassalism.", null),
                 new TextObject("{=Vassalism_effect}Notables of your owned settlement get relation boost to 100. \nYour relations with other notables are set to 0.", null), 0.5f, 0.5f, -0.9f));
@@ -58,13 +58,13 @@ namespace PolicyOverhaul
             __instance.Policies.Add(NewPolicies.Tuntian.Initialize(new TextObject("{=Tuntian_name}Peasant Army", null), new TextObject("{=Tuntian_desc}Army will be used to produce food during peace time.", null),
                 new TextObject("{=Tuntian_name}Peasant Army", null),
                 new TextObject("{=Tuntian_effect}Professional Army has no effect when this is active. \nEvery troop in castle increases its food production by 0.1 per day.", null), 0.1f, -0.1f, 0.1f));
-            __instance.Policies.Add(NewPolicies.Physiocracy.Initialize(new TextObject("{=Physiocracy_name}Physiocracy", null), new TextObject("{=Physiocracy_desc}the wealth of nations derived solely from the value of land agriculture and that agricultural products should be highly priced.", null),
+            __instance.Policies.Add(NewPolicies.Physiocracy.Initialize(new TextObject("{=Physiocracy_name}Physiocracy", null), new TextObject("{=Physiocracy_desc}The wealth of nations derived solely from the value of land agriculture and that agricultural products should be highly priced.", null),
                 new TextObject("{=Physiocracy_name}Physiocracy.", null),
                 new TextObject("{=Physiocracy_effect}Town converts 1% of its prosperity to food production per day.", null), 0.1f, -0.1f, 0.1f));
             __instance.Policies.Add(NewPolicies.PublicHealth.Initialize(new TextObject("{=PublicHealth_name}Public Health", null), new TextObject("{=PublicHealth_desc}Prolonging life and improving quality of life through organized efforts and informed choices of society.", null),
                 new TextObject("{=PublicHealth_name}Public Health.", null),
                 new TextObject("{=PublicHealth_effect}Income decreased by 0.5 per hearth per day.\nHearth increases by 0.5 per day.", null), 0.1f, -0.1f, 0.1f));
-            __instance.Policies.Add(NewPolicies.BigCaravan.Initialize(new TextObject("{=BigCaravan_name}Armed Caravan", null), new TextObject("{=BigCaravan_desc}Arm out caravan with enough military power to fight agaist bandits and other outlawas.", null),
+            __instance.Policies.Add(NewPolicies.BigCaravan.Initialize(new TextObject("{=BigCaravan_name}Armed Caravans", null), new TextObject("{=BigCaravan_desc}Arm our caravans with enough military power to fight agaist bandits and other outlawas.", null),
                 new TextObject("{=BigCaravan_name}Armed Caravan.", null),
                 new TextObject("{=BigCaravan_effect}Caravan size limit increases by 50. \nCaravan speed may decrease due to its large size.", null), 0.1f, -0.1f, 0.1f));
 

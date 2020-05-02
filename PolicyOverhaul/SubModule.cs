@@ -54,5 +54,6 @@ namespace PolicyOverhaul
                 campaignGameStarter.AddBehavior(new SeparateBehaviour());
             }
         }
+
     }
 }

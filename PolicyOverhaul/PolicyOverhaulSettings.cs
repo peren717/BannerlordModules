@@ -46,11 +46,14 @@ namespace PolicyOverhaul
         [SettingPropertyGroup("General")]
         public bool EnablePreAssignedPolicies { get; set; } = true;
 
-
+        [XmlElement]
+        [SettingProperty("Clan rebel/家族背叛", "Enbale clan rebel behavior/是否启用家族背叛")]
+        [SettingPropertyGroup("Separitism")]
+        public bool EnableRebel { get; set; } = true;
 
         [XmlElement]
         [SettingProperty("Rebel chance per day/每日叛变几率", 0f, 1f, "How often should a unloyal lord rebel. Changing this parameter in-game may result in unpredicatable behaviors./不忠领主每日有多少几率叛变。游戏进行时不可更改。")]
-        [SettingPropertyGroup("General")]
+        [SettingPropertyGroup("Separitism")]
         public float RebelProbability { get; set; } = 0.05f;
 
 

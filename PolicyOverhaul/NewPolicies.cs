@@ -29,6 +29,9 @@ namespace PolicyOverhaul
         public static PolicyObject Physiocracy { get; set; }
         public static PolicyObject PublicHealth { get; set; }
         public static PolicyObject BigCaravan { get; set; }
+        public static PolicyObject TrainedCivilian { get; set; }
+
+
 
 
 

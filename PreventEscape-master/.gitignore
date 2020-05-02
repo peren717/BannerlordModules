@@ -1,9 +1,0 @@
-*.suo
-/.vs
-/bin
-/obj
-/pdbs
-/PreventEscapeSubModule.sln.DotSettings.user
-/PreventEscape.csproj.user
-/Win64_Shipping_Client
-/external

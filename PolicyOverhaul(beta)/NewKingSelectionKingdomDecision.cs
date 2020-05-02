@@ -235,11 +235,19 @@ namespace TaleWorlds.CampaignSystem.Election
                         {
                             if (settlement.OwnerClan == Clan.PlayerClan)
                             {
-                                InformationManager.DisplayMessage(new InformationMessage("你的" + settlement.Name + "已被收归" + kingdom.Name + "所有", Colors.Red));
+                                TextObject town_taken1 = new TextObject("{=town_taken1}Your {settlement_name} was confiscated by {kingdom_name}.", null);
+                                town_taken1.SetTextVariable("settlement_name", settlement.Name.ToString());
+                                town_taken1.SetTextVariable("kingdom_name", kingdom.Name.ToString());
+                                InformationManager.DisplayMessage(new InformationMessage(town_taken1.ToString(), Colors.Red));
+
+                                TextObject town_taken2 = new TextObject("{=town_taken2}Your {settlement_name} was confiscated by {kingdom_name}. You get {settlement_prosperity} gold and 50 renown as compensation.", null);
+                                town_taken2.SetTextVariable("settlement_name", settlement.Name.ToString());
+                                town_taken2.SetTextVariable("kingdom_name", kingdom.Name.ToString());
+                                town_taken2.SetTextVariable("settlement_prosperity", settlement.Prosperity);
+                                InformationManager.AddQuickInformation(town_taken2);
                             }
                             else
                             {
-                                InformationManager.DisplayMessage(new InformationMessage(settlement.Name + "已被收归" + kingdom.Name + "所有", Colors.Gray));
                             }
                             ChangeOwnerOfSettlementAction.ApplyByDefault(kingdom.RulingClan.Leader, settlement);
                         }

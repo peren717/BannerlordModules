@@ -64,7 +64,7 @@ namespace PolicyOverhaul
                     {
                         if(clan.Kingdom.RulingClan == clan)
                         {
-                            explainedNumber.Add((float)clan.Kingdom.Clans.Count, NewPolicies.HouseOfLords.Name);
+                            explainedNumber.Add(-(float)clan.Kingdom.Clans.Count, NewPolicies.HouseOfLords.Name);
                         }
                         else
                         {

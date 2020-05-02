@@ -15,6 +15,8 @@ namespace PolicyOverhaul
         [HarmonyPostfix]
         private static void Postfix(MobileParty party, StatExplainer explanation, ref int __result)
         {
+            
+
             if (party.LeaderHero != null && !party.IsCaravan)
             {
                 if (party.MapFaction != null && party.MapFaction != party.LeaderHero.Clan && party.MapFaction.IsKingdomFaction)
@@ -77,6 +79,8 @@ namespace PolicyOverhaul
                 }
             }
 
+
+            
         }
 
     }

@@ -31,12 +31,17 @@ namespace PolicyOverhaul
 
     public class SeparateBehaviour : CampaignBehaviorBase
     {
+        static bool clanRebel = PolicyOverhaulSettings.Instance.EnableRebel;
+
         private static Random rng = new Random();
         static float RebelProbability = PolicyOverhaulSettings.Instance.RebelProbability;
 
         public override void RegisterEvents()
         {
-            CampaignEvents.DailyTickClanEvent.AddNonSerializedListener(this, OnClanTick);
+            if(clanRebel)
+            {
+                CampaignEvents.DailyTickClanEvent.AddNonSerializedListener(this, OnClanTick);
+            }
         }
 
         public override void SyncData(IDataStore dataStore)
@@ -90,7 +95,7 @@ namespace PolicyOverhaul
                         InformationManager.DisplayMessage(new InformationMessage(rebel_1.ToString()));
                     }else if((double)MBRandom.RandomFloatRanged(0f, 1f) < (double)Clan.PlayerClan.Leader.GetAttributeValue(CharacterAttributesEnum.Cunning) * 0.1 && Clan.PlayerClan.Kingdom != null && clan.Kingdom == Clan.PlayerClan.Kingdom)
                     {
-                        TextObject rebel_2 = new TextObject("{=rebel_2}You heard {clan} is plotting a rebellion agaist {kingdom}.", null);
+                        TextObject rebel_2 = new TextObject("{=rebel_2}You heard {clan} was plotting a rebellion agaist {kingdom}.", null);
                         rebel_2.SetTextVariable("kingdom", kingdom.Name.ToString());
                         rebel_2.SetTextVariable("clan", clan.Name.ToString());
                         InformationManager.DisplayMessage(new InformationMessage(rebel_2.ToString(), Colors.Red));
