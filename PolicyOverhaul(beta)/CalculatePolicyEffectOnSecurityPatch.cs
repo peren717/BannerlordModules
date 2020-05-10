@@ -24,7 +24,7 @@ namespace PolicyOverhaul
                 }
                 if (kingdom.ActivePolicies.Contains(NewPolicies.WarFury))
                 {
-                    explainedNumber.Add(-3f, NewPolicies.WarFury.Name);
+                    explainedNumber.Add(-2f, NewPolicies.WarFury.Name);
                 }
                 if (kingdom.ActivePolicies.Contains(NewPolicies.Slavery))
                 {

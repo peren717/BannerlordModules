@@ -1,28 +1,25 @@
 ﻿<Module>
-  <Name value="Policy Overhaul"/>
-  <Id value="PolicyOverhaul"/>
-  <Version value="v1.2.7"/>
+  <Name value="DiplomacyVote a Bannerlord Mod"/>
+  <Id value="DiplomacyVote"/>
+  <Version value="v1.0.0"/>
   <SingleplayerModule value="true"/>
   <MultiplayerModule value="false"/>
-  <Official value="false"/>
   <DependedModules>
     <DependedModule Id="Native"/>
     <DependedModule Id="SandBoxCore"/>
     <DependedModule Id="Sandbox"/>
-    <DependedModule Id="CustomBattle"/>
-    <DependedModule Id="StoryMode"/>
+    <DependedModule Id="StoryMode" />
   </DependedModules>
   <SubModules>
     <SubModule>
-      <Name value="PolicyOverhaul"/>
-      <DLLName value="PolicyOverhaul.dll"/>
-      <SubModuleClassType value="PolicyOverhaul.SubModule"/>
+      <Name value="DiplomacyVote"/>
+      <DLLName value="DiplomacyVote.dll"/>
+      <SubModuleClassType value="DiplomacyVote.SubModule"/>
       <Tags>
         <Tag key="DedicatedServerType" value="none" />
         <Tag key="IsNoRenderModeElement" value="false" />
       </Tags>
     </SubModule>
   </SubModules>
-  <Xmls>
-  </Xmls>
+  <Xmls/>
 </Module>

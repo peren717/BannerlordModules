@@ -38,7 +38,14 @@ namespace PolicyOverhaul
                     {
                         if (village.VillageState == Village.VillageStates.Normal)
                         {
-                            explainedNumber.Add(-0.5f, NewPolicies.PublicHealth.Name);
+                            explainedNumber.Add(-0.5f, NewPolicies.NormadicHorde.Name);
+                        }
+                    }
+                    if (kingdom.ActivePolicies.Contains(NewPolicies.TrainedCivilian))
+                    {
+                        if (village.VillageState == Village.VillageStates.Normal)
+                        {
+                            explainedNumber.Add(-0.5f, NewPolicies.TrainedCivilian.Name);
                         }
                     }
                 }

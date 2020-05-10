@@ -1,7 +1,7 @@
 ﻿<Module>
   <Name value="Policy Overhaul"/>
   <Id value="PolicyOverhaul"/>
-  <Version value="v1.2.7"/>
+  <Version value="v1.2.9"/>
   <SingleplayerModule value="true"/>
   <MultiplayerModule value="false"/>
   <Official value="false"/>

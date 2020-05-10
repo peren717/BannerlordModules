@@ -40,25 +40,16 @@ namespace PolicyOverhaul
                     {
                         clan.Kingdom.RemovePolicy(DefaultPolicies.CouncilOfTheCommons);
                     }
-                    if (clan.Kingdom.ActivePolicies.Contains(NewPolicies.CouncilOfTheCommens))
-                    {
-                        int num2 = -(clan.Settlements.Sum((Settlement t) => t.Notables.Count));
-                        explainedNumber.Add((float)num2 * 0.2f, DefaultPolicies.CouncilOfTheCommons.Name);
-                        foreach (Settlement settlement in clan.Settlements)
-                        {
-                            foreach (Hero hero in settlement.Notables)
-                            {
-                                hero.AddPower(1);
-                            }
-                        }
-                    }
                     if (clan.Kingdom.ActivePolicies.Contains(NewPolicies.Feudalism))
                     {
                         explainedNumber.Add((float)clan.Tier - 3, NewPolicies.Feudalism.Name);
                     }
                     if (clan.Kingdom.ActivePolicies.Contains(NewPolicies.WarFury) && clan.Influence>0)
                     {
-                        explainedNumber.Add(-(float)clan.Tier, NewPolicies.Feudalism.Name);
+                        if(clan.Influence>0)
+                        {
+                            explainedNumber.Add(-(float)clan.Tier*0.5f, NewPolicies.WarFury.Name);
+                        }
                     }
                     if (clan.Kingdom.ActivePolicies.Contains(NewPolicies.HouseOfLords))
                     {
@@ -69,6 +60,13 @@ namespace PolicyOverhaul
                         else
                         {
                             explainedNumber.Add(1f, NewPolicies.HouseOfLords.Name);
+                        }
+                    }
+                    if (clan.Kingdom.ActivePolicies.Contains(NewPolicies.Republic))
+                    {
+                        if (clan.Kingdom.RulingClan != clan)
+                        {
+                            explainedNumber.Add(1f, NewPolicies.Republic.Name);
                         }
                     }
                 }

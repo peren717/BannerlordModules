@@ -15,72 +15,85 @@ namespace PolicyOverhaul
         [HarmonyPostfix]
         private static void Postfix(MobileParty party, StatExplainer explanation, ref int __result)
         {
-            
-
-            if (party.LeaderHero != null && !party.IsCaravan)
+            try
             {
-                if (party.MapFaction != null && party.MapFaction != party.LeaderHero.Clan && party.MapFaction.IsKingdomFaction)
+                if (party.LeaderHero != null && !party.IsCaravan)
                 {
-                    if (((Kingdom)party.MapFaction).ActivePolicies.Contains(NewPolicies.Feudalism) && party.LeaderHero == party.LeaderHero.Clan.Leader && party.MapFaction.Leader == party.LeaderHero)
+                    if (party.MapFaction != null && party.MapFaction != party.LeaderHero.Clan && party.MapFaction.IsKingdomFaction)
                     {
-                        __result += 50;
-                        if (explanation != null)
+                        if (((Kingdom)party.MapFaction).ActivePolicies.Contains(NewPolicies.Feudalism) && party.LeaderHero == party.LeaderHero.Clan.Leader && party.MapFaction.Leader == party.LeaderHero)
                         {
-                            explanation.AddLine(NewPolicies.Feudalism.Name.ToString(), 50f, StatExplainer.OperationType.Add);
+                            __result += 50;
+                            if (explanation != null)
+                            {
+                                explanation.AddLine(NewPolicies.Feudalism.Name.ToString(), 50f, StatExplainer.OperationType.Add);
+                            }
                         }
-                    }
-                    if (((Kingdom)party.MapFaction).ActivePolicies.Contains(NewPolicies.WarFury))
-                    {
-                        int num = (int)party.LeaderHero.Clan.Influence;
-                        if (num > 200)
+                        if (((Kingdom)party.MapFaction).ActivePolicies.Contains(NewPolicies.WarFury))
                         {
-                            num = 200;
+                            int num = (int)(party.LeaderHero.Clan.Influence * 0.5);
+                            if (num > 200)
+                            {
+                                num = 200;
+                            }
+                            __result += num;
+                            if (explanation != null)
+                            {
+                                explanation.AddLine(NewPolicies.WarFury.Name.ToString(), num, StatExplainer.OperationType.Add);
+                            }
                         }
-                        __result += num;
-                        if (explanation != null)
+                        if (((Kingdom)party.MapFaction).ActivePolicies.Contains(NewPolicies.HouseOfLords) && ((Kingdom)party.MapFaction).RulingClan != party.LeaderHero.Clan)
                         {
-                            explanation.AddLine(NewPolicies.WarFury.Name.ToString(), num, StatExplainer.OperationType.Add);
-                        }
-                    }
-                    if (((Kingdom)party.MapFaction).ActivePolicies.Contains(NewPolicies.HouseOfLords) && ((Kingdom)party.MapFaction).RulingClan != party.LeaderHero.Clan)
-                    {
-                        if (explanation != null)
-                        {
-                            explanation.AddLine(NewPolicies.HouseOfLords.Name.ToString(), 20, StatExplainer.OperationType.Add);
-                        }
-                        __result += 20;
+                            if (explanation != null)
+                            {
+                                explanation.AddLine(NewPolicies.HouseOfLords.Name.ToString(), 20, StatExplainer.OperationType.Add);
+                            }
+                            __result += 20;
 
-                    }
-                    if (((Kingdom)party.MapFaction).ActivePolicies.Contains(NewPolicies.Tyrant) && party.MapFaction.Leader == party.LeaderHero)
-                    {
-                        __result += 50;
-                        if (explanation != null)
-                        {
-                            explanation.AddLine(NewPolicies.Tyrant.Name.ToString(), 50, StatExplainer.OperationType.Add);
                         }
-                    }
+                        if (((Kingdom)party.MapFaction).ActivePolicies.Contains(NewPolicies.Tyrant) && party.MapFaction.Leader == party.LeaderHero)
+                        {
+                            __result += 50;
+                            if (explanation != null)
+                            {
+                                explanation.AddLine(NewPolicies.Tyrant.Name.ToString(), 50, StatExplainer.OperationType.Add);
+                            }
+                        }
+                        if (((Kingdom)party.MapFaction).ActivePolicies.Contains(NewPolicies.Centralization) && (party.LeaderHero.Clan == ((Kingdom)(party.MapFaction)).RulingClan))
+                        {
+                            int n = 20 * (((Kingdom)party.MapFaction).Clans.Count - 1);
+                            __result += n;
+                            if (explanation != null)
+                            {
+                                explanation.AddLine(NewPolicies.Centralization.Name.ToString(), n, StatExplainer.OperationType.Add);
+                            }
+                        }
 
-                }
-            }
-            else
-            {
-                if (party.IsCaravan && party.MapFaction.IsKingdomFaction)
-                {
-                    if (((Kingdom)party.MapFaction).ActivePolicies.Contains(NewPolicies.BigCaravan))
-                    {
-                        ExplainedNumber explainedNumber = new ExplainedNumber(0f, explanation, null);
-                        if (explanation != null)
-                        {
-                            explanation.Lines.Remove(explanation.Lines.Last<StatExplainer.ExplanationLine>());
-                        }
-                        explainedNumber.Add(50f, NewPolicies.BigCaravan.Name);
-                        __result += (int)explainedNumber.ResultNumber;
                     }
                 }
+                else
+                {
+                    if (party.IsCaravan && party.MapFaction.IsKingdomFaction)
+                    {
+                        if (((Kingdom)party.MapFaction).ActivePolicies.Contains(NewPolicies.BigCaravan))
+                        {
+                            ExplainedNumber explainedNumber = new ExplainedNumber(0f, explanation, null);
+                            if (explanation != null)
+                            {
+                                explanation.Lines.Remove(explanation.Lines.Last<StatExplainer.ExplanationLine>());
+                            }
+                            explainedNumber.Add(50f, NewPolicies.BigCaravan.Name);
+                            __result += (int)explainedNumber.ResultNumber;
+                        }
+                    }
+                }
+            }
+            catch
+            {
+
             }
 
 
-            
         }
 
     }

@@ -60,16 +60,19 @@ namespace PolicyOverhaul
                         else if (kingdom.Name.ToString() == "北部帝国" || kingdom.Name.ToString() == "Northern Empire")
                         {
                             kingdom.ActivePolicies.Add(NewPolicies.Republic);
+                            kingdom.ActivePolicies.Add(DefaultPolicies.Senate);
+                            kingdom.ActivePolicies.Add(DefaultPolicies.Citizenship);
                         }
                         else if (kingdom.Name.ToString() == "南部帝国" || kingdom.Name.ToString() == "Southern Empire")
                         {
                             kingdom.ActivePolicies.Add(NewPolicies.Centralization);
+                            kingdom.ActivePolicies.Add(DefaultPolicies.Citizenship);
 
                         }
                         else if (kingdom.Name.ToString() == "西部帝国" || kingdom.Name.ToString() == "Western Empire")
                         {
                             kingdom.ActivePolicies.Add(NewPolicies.Tyrant);
-
+                            kingdom.ActivePolicies.Add(DefaultPolicies.Citizenship);
                         }
                         else if (kingdom.Name.ToString() == "瓦兰迪亚" || kingdom.Name.ToString() == "Vlandia")
                         {
@@ -82,13 +85,17 @@ namespace PolicyOverhaul
                         }
                         else if (kingdom.Name.ToString() == "巴旦尼亚" || kingdom.Name.ToString() == "Battania")
                         {
+                            kingdom.ActivePolicies.Add(NewPolicies.TrainedCivilian);
                         }
                     }
                 }
             }
             catch (Exception e)
             {
-                GameLog.Warn("Default Policy not set error due to:" + e.Message);
+                if(debug)
+                {
+                    GameLog.Warn("Default Policy not set error due to:" + e.Message);
+                }
             }
 
 
@@ -166,6 +173,10 @@ namespace PolicyOverhaul
                                     GiveGoldAction.ApplyBetweenCharacters(null, settlement.OwnerClan.Leader, (int)settlement.Prosperity, false);
                                     InformationManager.DisplayMessage(new InformationMessage(town_taken3.ToString(), Colors.Gray));
                                     ChangeOwnerOfSettlementAction.ApplyByDefault(kingdom.RulingClan.Leader, settlement);
+                                    if(settlement.OwnerClan!=Clan.PlayerClan)
+                                    {
+                                        settlement.OwnerClan.Leader.SetPersonalRelation(kingdom.Leader, settlement.OwnerClan.Leader.GetRelation(kingdom.Leader) - 10);
+                                    }
                                 }
 
                             }
@@ -349,7 +360,6 @@ namespace PolicyOverhaul
 
                                     TextObject assasin_2 = new TextObject("{=assasin_2}You are attacked by someone sent by {leader} of {kingdom}. Luckly you survived.", null);
                                     assasin_2.SetTextVariable("leader", clan.Leader.Name.ToString());
-                                    assasin_2.SetTextVariable("otherLeader", otherClan.Leader.Name.ToString());
                                     assasin_2.SetTextVariable("kingdom", clan.Kingdom.Name.ToString());
                                     InformationManager.AddQuickInformation(assasin_2);
                                 }
@@ -366,7 +376,6 @@ namespace PolicyOverhaul
 
                                     TextObject assasin_3 = new TextObject("{=assasin_3}You are attacked by someone sent by {leader} of {kingdom}. You were gravely wounded.", null);
                                     assasin_3.SetTextVariable("leader", clan.Leader.Name.ToString());
-                                    assasin_3.SetTextVariable("otherLeader", otherClan.Leader.Name.ToString());
                                     assasin_3.SetTextVariable("kingdom", clan.Kingdom.Name.ToString());
                                     InformationManager.AddQuickInformation(assasin_3);
                                     otherClan.Leader.HitPoints = 1;
@@ -405,7 +414,6 @@ namespace PolicyOverhaul
                         RaisePolicy(clan, otherClan, NewPolicies.ConstitutionaMonarchy);
                         RaisePolicy(clan, otherClan, NewPolicies.HouseOfLords);
                         RaisePolicy(clan, otherClan, NewPolicies.Republic);
-                        RaisePolicy(clan, otherClan, NewPolicies.CouncilOfTheCommens);
 
 
                     }
@@ -428,7 +436,7 @@ namespace PolicyOverhaul
             Kingdom kingdom = clan.Kingdom;
             if (clan.Leader.GetRelation(otherClan.Leader) < -50 && MBRandom.RandomFloatRanged(0f, 1f) < actProbability)
             {
-                if (otherClan == kingdom.RulingClan && !kingdom.ActivePolicies.Contains(policy) && clan.Influence > 200)
+                if (otherClan == kingdom.RulingClan && !kingdom.ActivePolicies.Contains(policy) && clan.Influence > 500)
                 {
                     clan.Influence -= 50;
                     Campaign.Current.AddDecision(new KingdomPolicyDecision(clan, policy, false), true);
@@ -448,10 +456,42 @@ namespace PolicyOverhaul
                     {
                         if (clan.InfluenceChange > 0 && clan.Influence > 200)
                         {
+                            if (clan == kingdom.RulingClan && kingdom.ActivePolicies.Contains(NewPolicies.Centralization) && clan.Leader.GetRelation(otherClan.Leader) > 50 && MBRandom.RandomFloatRanged(0f, 1f) < 0.8 && clan.Influence > 1000)
+                            {
+                                if (clan.Leader.GetRelation(otherClan.Leader) > 50)
+                                {
+                                    clan.Influence -= 100;
+                                    otherClan.Influence += 100;
+                                    if (otherClan != Clan.PlayerClan)
+                                    {
+                                        clan.Leader.SetPersonalRelation(otherClan.Leader, clan.Leader.GetRelation(otherClan.Leader) + 10);
+                                    }
+                                    TextObject support_1 = new TextObject("{=support_1}{leader} offered political support to {otherLeader}.", null);
+                                    support_1.SetTextVariable("leader", clan.Leader.Name.ToString());
+                                    support_1.SetTextVariable("otherLeader", otherClan.Leader.Name.ToString());
+                                    if (otherClan.Leader.IsHumanPlayerCharacter)
+                                    {
+                                        InformationManager.DisplayMessage(new InformationMessage(support_1.ToString(), Colors.Green));
+
+                                        TextObject support_2 = new TextObject("{=support_2}{leader} offered you political supports. You gained some influence.", null);
+                                        support_2.SetTextVariable("leader", clan.Leader.Name.ToString());
+                                        InformationManager.AddQuickInformation(new TextObject(support_2.ToString(), null));
+                                    }
+                                    else
+                                    {
+                                        InformationManager.DisplayMessage(new InformationMessage(support_1.ToString(), Colors.Gray));
+                                    }
+                                    return;
+                                }
+                            }
                             if (clan.Leader.GetRelation(otherClan.Leader) > 50 && MBRandom.RandomFloatRanged(0f, 1f) < actProbability)
                             {
                                 clan.Influence -= 25;
                                 otherClan.Influence += 10;
+                                if(otherClan != Clan.PlayerClan)
+                                {
+                                    clan.Leader.SetPersonalRelation(otherClan.Leader, clan.Leader.GetRelation(otherClan.Leader) + 1);
+                                }
                                 TextObject support_1 = new TextObject("{=support_1}{leader} offered political support to {otherLeader}.", null);
                                 support_1.SetTextVariable("leader", clan.Leader.Name.ToString());
                                 support_1.SetTextVariable("otherLeader", otherClan.Leader.Name.ToString());
@@ -459,7 +499,7 @@ namespace PolicyOverhaul
                                 {
                                     InformationManager.DisplayMessage(new InformationMessage(support_1.ToString(), Colors.Green));
 
-                                    TextObject support_2 = new TextObject("{=support_1}{leader} offered you political supports. You gain 10 influence.", null);
+                                    TextObject support_2 = new TextObject("{=support_2}{leader} offered you political supports. You gained some influence.", null);
                                     support_2.SetTextVariable("leader", clan.Leader.Name.ToString());
                                     InformationManager.AddQuickInformation(new TextObject(support_2.ToString(), null));
                                 }
@@ -469,6 +509,7 @@ namespace PolicyOverhaul
                                 }
                                 return;
                             }
+
                         }
                     }
                 }

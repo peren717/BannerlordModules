@@ -1,5 +1,6 @@
 ﻿using HarmonyLib;
 using ModLib;
+using ModLib.Definitions;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
@@ -20,18 +21,6 @@ namespace PolicyOverhaul
             try
             {
                 new Harmony("UniversityofUtah.peren717.policyOverhaul").PatchAll();
-                try
-                {
-                    FileDatabase.Initialise("PolicyOverhaul");
-                    PolicyOverhaulSettings settings = FileDatabase.Get<PolicyOverhaulSettings>(PolicyOverhaulSettings.InstanceID);
-                    if (settings == null) settings = new PolicyOverhaulSettings();
-                    SettingsDatabase.RegisterSettings(settings);
-                }
-                catch (Exception e)
-                {
-                    MessageBox.Show("Setting Erro: " + e.Message);
-
-                }
             }
             catch (Exception exception)
             {
@@ -54,5 +43,6 @@ namespace PolicyOverhaul
                 campaignGameStarter.AddBehavior(new SeparateBehaviour());
             }
         }
+
     }
 }

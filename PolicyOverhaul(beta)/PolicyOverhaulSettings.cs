@@ -1,10 +1,5 @@
-﻿using ModLib;
-using ModLib.Attributes;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using ModLib.Definitions;
+using ModLib.Definitions.Attributes;
 using System.Xml.Serialization;
 
 namespace PolicyOverhaul
@@ -22,7 +17,7 @@ namespace PolicyOverhaul
         {
             get
             {
-                return (PolicyOverhaulSettings)SettingsDatabase.GetSettings("PolicyOverhaulSettings");
+                return (PolicyOverhaulSettings)SettingsDatabase.GetSettings<PolicyOverhaulSettings>();
             }
         }
 

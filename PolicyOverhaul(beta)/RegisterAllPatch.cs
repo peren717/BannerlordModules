@@ -28,7 +28,6 @@ namespace PolicyOverhaul
             NewPolicies.Polygamy = game.ObjectManager.RegisterPresumedObject<PolicyObject>(new PolicyObject("polygamy"));
             NewPolicies.Slavery = game.ObjectManager.RegisterPresumedObject<PolicyObject>(new PolicyObject("slavery"));
             NewPolicies.WarFury = game.ObjectManager.RegisterPresumedObject<PolicyObject>(new PolicyObject("WarFury"));
-            NewPolicies.CouncilOfTheCommens = game.ObjectManager.RegisterPresumedObject<PolicyObject>(new PolicyObject("CouncilOfTheCommens"));
             NewPolicies.Centralization = game.ObjectManager.RegisterPresumedObject<PolicyObject>(new PolicyObject("Centralization"));
             NewPolicies.HouseOfLords = game.ObjectManager.RegisterPresumedObject<PolicyObject>(new PolicyObject("HouseOfLords"));
             NewPolicies.NormadicHorde = game.ObjectManager.RegisterPresumedObject<PolicyObject>(new PolicyObject("NormadicHorde"));
@@ -37,6 +36,8 @@ namespace PolicyOverhaul
             NewPolicies.Physiocracy = game.ObjectManager.RegisterPresumedObject<PolicyObject>(new PolicyObject("Physiocracy"));
             NewPolicies.PublicHealth = game.ObjectManager.RegisterPresumedObject<PolicyObject>(new PolicyObject("PublicHealth"));
             NewPolicies.BigCaravan = game.ObjectManager.RegisterPresumedObject<PolicyObject>(new PolicyObject("BigCaravan"));
+            NewPolicies.TrainedCivilian = game.ObjectManager.RegisterPresumedObject<PolicyObject>(new PolicyObject("TrainedCivilian"));
+
 
 
 

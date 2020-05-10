@@ -22,10 +22,10 @@ namespace PolicyOverhaul
                 new TextObject("{=ConstitutionaMonarchy_effect}The influence of the ruler clan is set to 0 everyday.", null), -0.9f, -0.5f, 0.2f));
             __instance.Policies.Add(NewPolicies.ProfessionalArmy.Initialize(new TextObject("{=ProfessionalArmy_name}Professional Soldiers", null), new TextObject("{=ProfessionalArmy_desc}Enabling every soldier to focus their time and energy on martial training.", null),
                 new TextObject("{=ProfessionalArmy_name}Professional Soldiers.", null),
-                new TextObject("{=ProfessionalArmy_effect}Troops in the settlements recieve double XP from training.\nTroops in a mobile party recieve double wages.", null), -0.1f, -0.2f, 0.3f));
+                new TextObject("{=ProfessionalArmy_effect}Troops in the settlements recieve double XP from training.\nNonruler clan gain 1 influence per day. \nTroops in a mobile party recieve double wages.", null), -0.1f, -0.2f, 0.3f));
             __instance.Policies.Add(NewPolicies.Republic.Initialize(new TextObject("{=Republic_name}Republic", null), new TextObject("{=Republic_desc}A state in which supreme power is held by the elected representatives, and which has an elected or nominated president rather than a monarch.", null),
                 new TextObject("{=Republic_name}Republic.", null),
-                new TextObject("{=Republic_effect}An election will be held to determine the next ruler. \nHas no effect when Feudal inheritance or Tyrant active.", null), -0.9f, 0.1f, 0.5f));
+                new TextObject("{=Republic_effect}An election will be held to determine the next ruler. \nHas no effect when Feudal inheritance or Tyrant active. ", null), -0.9f, 0.1f, 0.5f));
             __instance.Policies.Add(NewPolicies.Feudalism.Initialize(new TextObject("{=Feudalism_name}Feudalism", null), new TextObject("{=Feudalism_desc}A set of reciprocal legal and military obligations which existed among the warrior nobility and revolved around the three key concepts of lords, vassals and fiefs.", null),
                 new TextObject("{=Feudalism_name}Feudalism.", null),
                 new TextObject("{=Feudalism_effect}Clans recieve influence based on their tiers. \nRuler clan party limit +50. \nNon-ruler clan will get little renown.", null), -0.9f, -0.9f, 0.1f));
@@ -40,15 +40,13 @@ namespace PolicyOverhaul
                 new TextObject("{=Slavery_effect}Settlement prosperity is increased by 0.1 per prisoner per day \nSettlement security is decreased by 0.1 per prisoner per day", null), 0.0f, 0.2f, -0.9f));
             __instance.Policies.Add(NewPolicies.WarFury.Initialize(new TextObject("{=WarFury_name}Supporting War With War", null), new TextObject("{=WarFury_desc}Sustaining the war by means of war, fuel war with warfare.", null),
                 new TextObject("{=WarFury_name}Supporting War With War.", null),
-                new TextObject("{=WarFury_effect}Party limit is increased by 1 per influence you have.(max 200) \nSettlement prosperity decreased by 3 per day.\nSettlement security decreased by 3 per day.\nConsumes 1 influence per day per clan tier.", null), 0.5f, -0.5f, -0.1f));
-            __instance.Policies.Add(NewPolicies.CouncilOfTheCommens.Initialize(new TextObject("{=CouncilOfTheCommens_name}The Council of the Commons", null), new TextObject("{=CouncilOfTheCommens_desc}Town notables will be involved in local politics.", null),
-                new TextObject("{=CouncilOfTheCommens_name}The Council of the Commons.", null), new TextObject("{=CouncilOfTheCommens_effect}Every notable costs their lord 0.2 influence per day. \nNotable power increased by 1 per day.", null), 0.0f, -0.1f, 0.4f));
+                new TextObject("{=WarFury_effect}Party size limit is increased by 0.5 per influence you have.(max 200) \nSettlement prosperity decreased by 2 per day.\nSettlement security decreased by 2 per day.\nConsumes 0.5 influence per day per clan tier(no influence loss at 0).", null), 0.5f, -0.5f, -0.1f));
             __instance.Policies.Add(NewPolicies.Centralization.Initialize(new TextObject("{=Centralization_name}Centralism", null), new TextObject("{=Centralization_desc}The control of different activities and organizations under a single authority.", null),
                 new TextObject("{=Centralization_name}Centralism.", null),
-                new TextObject("{=Centralization_effect}All town ownership goes to the ruler clan. \nCastle ownership will be changed after every election cycle.\nThe ruler clan pays wages to their subordinates.", null), 0.9f, -0.9f, -0.9f));
+                new TextObject("{=Centralization_effect}All town ownership goes to the ruler clan. \nRuler clan party size increase 20 per clan in the kingdom. \nCastle ownership will be changed after every election cycle.\nThe ruler clan pays wages to their subordinates.", null), 0.9f, -0.9f, -0.9f));
             __instance.Policies.Add(NewPolicies.HouseOfLords.Initialize(new TextObject("{=HouseOfLords_name}House of Lords", null), new TextObject("{=HouseOfLords_desc}An alliance of nobles that limits the power of the ruler.", null),
                 new TextObject("{=HouseOfLords_name}House of Lords.", null),
-                new TextObject("{=HouseOfLords_effect}Ruler influence decreased by 1 per clan in thier realm. \nNon-ruler clan party limit increased by 20. \nNon-ruler clan influence increased by 1 per day", null), -0.2f, 0.5f, 0.2f));
+                new TextObject("{=HouseOfLords_effect}Ruler influence decreased by 1 per clan in thier realm. \nNon-ruler clan party limit increased by 20. \nNon-ruler clan influence increased by 1 per day", null), -0.9f, 0.5f, 0.2f));
             __instance.Policies.Add(NewPolicies.NormadicHorde.Initialize(new TextObject("{=NormadicHorde_name}Normadic Tradition", null), new TextObject("{=NormadicHorde_desc}Nomadic pastoralism is a form of pastoralism when livestock are herded in order to find fresh pastures on which to graze.", null),
                 new TextObject("{=NormadicHorde_name}Normadic Tradition.", null),
                 new TextObject("{=NormadicHorde_effect}Hearth change decreased by 0.5 per day. \nTown prosperity decreased by 2 per day. \nParty consumes no food.", null), 0.0f, -0.5f, 0.2f));
@@ -67,6 +65,9 @@ namespace PolicyOverhaul
             __instance.Policies.Add(NewPolicies.BigCaravan.Initialize(new TextObject("{=BigCaravan_name}Armed Caravans", null), new TextObject("{=BigCaravan_desc}Arm our caravans with enough military power to fight agaist bandits and other outlawas.", null),
                 new TextObject("{=BigCaravan_name}Armed Caravan.", null),
                 new TextObject("{=BigCaravan_effect}Caravan size limit increases by 50. \nCaravan speed may decrease due to its large size.", null), 0.1f, -0.1f, 0.1f));
+            __instance.Policies.Add(NewPolicies.TrainedCivilian.Initialize(new TextObject("{=TrainedCivilian_name}Trained Civilian", null), new TextObject("{=TrainedCivilian_desc}All our people are well-trained fearless warriors.", null),
+                new TextObject("{=TrainedCivilian_name}Trained Civilian.", null),
+                new TextObject("{=TrainedCivilian_effect}Base party moral increases by 20. \nVillage hearth decreases by 0.5 per day.", null), -0.5f, -0.1f, 0.5f));
 
 
 
